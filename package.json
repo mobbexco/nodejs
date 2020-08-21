@@ -1,0 +1,22 @@
+{
+  "name": "mobbex",
+  "version": "1.0.0",
+  "description": "Mobbex Integration Package",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GrosfeldEzekiel/mobbex.git"
+  },
+  "keywords": [
+    "mobbex"
+  ],
+  "author": "Ezekiel Grosfeld",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GrosfeldEzekiel/mobbex/issues"
+  },
+  "homepage": "https://github.com/GrosfeldEzekiel/mobbex#readme"
+}
