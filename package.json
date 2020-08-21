@@ -4,7 +4,6 @@
   "description": "Mobbex Integration Package",
   "main": "index.js",
   "scripts": {
-    "start": "index.js",
     "lint": "eslint ./src",
     "test": "nyc mocha"
   },
