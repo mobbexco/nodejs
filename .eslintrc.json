@@ -1,6 +1,6 @@
 {
     "env": {
-      "moha": true
+      "mocha": true
     },
     "extends": [
         "airbnb-base"
