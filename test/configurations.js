@@ -37,6 +37,27 @@ describe('Configurations Module', () => {
         assert.equal(configuration.getApiKey(), apiKey);
         assert.equal(configuration.getAccessToken(), accessToken)
       });
+
+      it('Expect cannot change values error', () => {
+        assert.throws(configuration.configure.bind(configuration, {
+          apiKey: apiKey,
+          accessToken: accessToken
+        }), 'You cannot change Api Key or Access Token because are already set');
+      });
     });
+
+    describe('Configuration setters', () => {
+      it('Check setApiKey', () => {
+        configuration.setApiKey(apiKey);
+
+        assert.equal(configuration.getApiKey(), apiKey);
+      });
+
+      it('Check setAccessToken', () => {
+        configuration.setAccessToken(accessToken);
+
+        assert.equal(configuration.getAccessToken(), accessToken);
+      });
+    })
   });
-})
+});

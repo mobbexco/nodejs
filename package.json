@@ -4,8 +4,9 @@
   "description": "Mobbex Integration Package",
   "main": "index.js",
   "scripts": {
+    "start": "index.js",
     "lint": "eslint ./src",
-    "test": "mocha"
+    "test": "nyc mocha"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "eslint": "^7.7.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
-    "mocha": "^8.1.1"
+    "mocha": "^8.1.1",
+    "nyc": "^15.1.0"
   }
 }
