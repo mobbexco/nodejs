@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GrosfeldEzekiel/mobbex.git"
+    "url": "git+https://github.com/GrosfeldEzekiel/mobbex-node.git"
   },
   "keywords": [
     "mobbex"
@@ -17,9 +17,9 @@
   "author": "Ezekiel Grosfeld",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/GrosfeldEzekiel/mobbex/issues"
+    "url": "https://github.com/GrosfeldEzekiel/mobbex-node/issues"
   },
-  "homepage": "https://github.com/GrosfeldEzekiel/mobbex#readme",
+  "homepage": "https://github.com/GrosfeldEzekiel/mobbex-node#readme",
   "dependencies": {},
   "devDependencies": {
     "chai": "^4.2.0",
