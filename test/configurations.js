@@ -45,19 +45,5 @@ describe('Configurations Module', () => {
         }), 'You cannot change Api Key or Access Token because are already set');
       });
     });
-
-    describe('Configuration setters', () => {
-      it('Check setApiKey', () => {
-        configuration.setApiKey(apiKey);
-
-        assert.equal(configuration.getApiKey(), apiKey);
-      });
-
-      it('Check setAccessToken', () => {
-        configuration.setAccessToken(accessToken);
-
-        assert.equal(configuration.getAccessToken(), accessToken);
-      });
-    })
   });
 });
