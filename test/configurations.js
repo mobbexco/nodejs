@@ -3,8 +3,8 @@ const assert = chai.assert;
 const configuration = require('../lib/configurations')
 
 describe('Configurations Module', () => {
-  let apiKey = 'API KEY';
-  let accessToken = 'ACCESS TOKEN';
+  let apiKey = 'zJ8LFTBX6Ba8D611e9io13fDZAwj0QmKO1Hn1yIj';
+  let accessToken = 'd31f0721-2f85-44e7-bcc6-15e19d1a53cc';
 
   describe('Configurations Errors', () => {
     it('Expect configuration error', () => {
@@ -26,24 +26,18 @@ describe('Configurations Module', () => {
         apiKey: apiKey
       }), 'You must provide an Access Token')
     });
+  });
+  describe('Configuration Success', () => {
+    it('Check Api Key and Access Token are set', () => {
+      assert.equal(configuration.getApiKey(), apiKey);
+      assert.equal(configuration.getAccessToken(), accessToken)
+    });
 
-    describe('Configuration Success', () => {
-      it('Check Api Key and Access Token are set', () => {
-        configuration.configure({
-          apiKey: apiKey,
-          accessToken: accessToken
-        });
-
-        assert.equal(configuration.getApiKey(), apiKey);
-        assert.equal(configuration.getAccessToken(), accessToken)
-      });
-
-      it('Expect cannot change values error', () => {
-        assert.throws(configuration.configure.bind(configuration, {
-          apiKey: apiKey,
-          accessToken: accessToken
-        }), 'You cannot change Api Key or Access Token because are already set');
-      });
+    it('Expect cannot change values error', () => {
+      assert.throws(configuration.configure.bind(configuration, {
+        apiKey: apiKey,
+        accessToken: accessToken
+      }), 'You cannot change Api Key or Access Token because are already set');
     });
   });
 });
