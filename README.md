@@ -27,6 +27,68 @@ mobbex.configurations.configure({
 })
 ```
 ### Subscripciones
+##### Crear
+Para crear una subscripción se utiliza ``subscription.create`` pasando como parametro el objeto con la nueva subscripción:
+```javascript
+const subscription =
+{
+  total: 200.00,
+  currency: 'ARS',
+  name: 'Prueba',
+  description: 'Prueba',
+  type: 'dynamic',
+  interval: '1m',
+  trial: 1,
+  limit: 0,
+  webhook: 'http://webhook',
+  return_url: 'http://return_url',
+  features: ['accept_no_funds']
+}
+
+mobbex.subscription.create(subscripcion)
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
+```
+
+##### Editar
+Para editar una subscripción se pasan como parametros el ID y un objeto con los cambios:
+```javascript
+mobbex.subscription.edit('ID', {total: 300.00})
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
+```
+
+##### Obtener todas
+Para obtener todas las subscripciones:
+```javascript
+mobbex.subscription.all()
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
+```
+
+##### Buscar
+Para buscar una subscripción:
+```javascript
+mobbex.subscription.find('ID')
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
+```
+
+##### Activar
+Para activar una subscripción:
+```javascript
+mobbex.subscription.activate('ID')
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
+```
+
+##### Eliminar
+PAra eliminar una subscripción:
+```javascript
+mobbex.subscription.delete('ID')
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
+```
 
 #### Susbscriptores
 Para los ejemplos ``ID`` es el ID de la subscripción y ``SID` el ID del subscriptor
