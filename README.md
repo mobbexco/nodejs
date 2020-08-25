@@ -10,7 +10,7 @@
 Instalar el paquete usando:
 
 ```sh
-npm install stripe --save
+npm install mobbex --save
 ```
 
 ## Uso
@@ -91,7 +91,7 @@ mobbex.subscription.delete('ID')
 ```
 
 #### Susbscriptores
-Para los ejemplos ``ID`` es el ID de la subscripción y ``SID` el ID del subscriptor
+Para los ejemplos ``ID`` es el ID de la subscripción y ``SID`` el ID del subscriptor
 
 ##### Crear
 Para crear un nuevo subscriptor se utiliza ``subscribers.create`` pasando como parametros el ID de la subscripción y un objeto con el nuevo subscriptor:
