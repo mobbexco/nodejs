@@ -28,7 +28,7 @@ mobbex.configurations.configure({
 ```
 ### Subscripciones
 ##### Crear
-Para crear una subscripción se utiliza ``subscription.create`` pasando como parametro el objeto con la nueva subscripción:
+Para crear una subscripción se utiliza ``subscriptions.create`` pasando como parametro el objeto con la nueva subscripción:
 ```javascript
 const subscription =
 {
@@ -45,7 +45,7 @@ const subscription =
   features: ['accept_no_funds']
 }
 
-mobbex.subscription.create(subscripcion)
+mobbex.subscriptions.create(subscripcion)
     .then(data => console.log(data))
     .catch(error => console.log(error))
 ```
@@ -53,7 +53,7 @@ mobbex.subscription.create(subscripcion)
 ##### Editar
 Para editar una subscripción se pasan como parametros el ID y un objeto con los cambios:
 ```javascript
-mobbex.subscription.edit('ID', {total: 300.00})
+mobbex.subscriptions.edit('ID', {total: 300.00})
     .then(data => console.log(data))
     .catch(error => console.log(error))
 ```
@@ -61,7 +61,7 @@ mobbex.subscription.edit('ID', {total: 300.00})
 ##### Obtener todas
 Para obtener todas las subscripciones:
 ```javascript
-mobbex.subscription.all()
+mobbex.subscriptions.all()
     .then(data => console.log(data))
     .catch(error => console.log(error))
 ```
@@ -69,7 +69,7 @@ mobbex.subscription.all()
 ##### Buscar
 Para buscar una subscripción:
 ```javascript
-mobbex.subscription.find('ID')
+mobbex.subscriptions.find('ID')
     .then(data => console.log(data))
     .catch(error => console.log(error))
 ```
@@ -77,7 +77,7 @@ mobbex.subscription.find('ID')
 ##### Activar
 Para activar una subscripción:
 ```javascript
-mobbex.subscription.activate('ID')
+mobbex.subscriptions.activate('ID')
     .then(data => console.log(data))
     .catch(error => console.log(error))
 ```
@@ -85,7 +85,7 @@ mobbex.subscription.activate('ID')
 ##### Eliminar
 PAra eliminar una subscripción:
 ```javascript
-mobbex.subscription.delete('ID')
+mobbex.subscriptions.delete('ID')
     .then(data => console.log(data))
     .catch(error => console.log(error))
 ```
