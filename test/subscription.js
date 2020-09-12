@@ -7,7 +7,7 @@ chai.use(chaiPromise)
 
 describe('Subscription Module', () => {
   let id = 'mv4vuUGYG'
-  describe('Succhesfully handle subscrptions', () => {
+  describe('Successfully handle subscrptions', () => {
     it('Should create a new subscription', () => {
       assert.isFulfilled(subscription.create({
         total: 200.00,
