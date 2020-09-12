@@ -26,6 +26,42 @@ mobbex.configurations.configure({
     accessToken: 'ACCESS-TOKEN'
 })
 ```
+
+### Checkout
+##### Crear
+Para crear un checkout se utiliza ``checkout.create`` pasando como parametro el objeto del checkout:
+```javascript
+const checkout =
+{
+  total: 100.2,
+  currency: "ARS",
+  reference: "2982-2XtPXlgSaWccqUyobuv4sEmLYMV0N6oX6MoridMw",
+  description: "Descripción de la Venta",
+  items: [
+    {
+      image: "https://www.mobbex.com/wp-content/uploads/2019/03/web_logo.png",
+      quantity: 2,
+      description: "Mi Producto",
+      total: 50,
+    },
+    {
+      image: "https://www.mobbex.com/wp-content/uploads/2019/03/web_logo.png",
+      quantity: 1,
+      description: "Mi otro producto",
+      total: 50.2,
+    }],
+  options: {
+    domain: "midominio.com",
+  },
+  return_url: "https://mobbex.com/sale/return?session=56789",
+  webhook: "https://mobbex.com/sale/webhook?user=1234"
+}
+
+mobbex.checkout.create(checkout)
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
+```
+
 ### Subscripciones
 ##### Crear
 Para crear una subscripción se utiliza ``subscriptions.create`` pasando como parametro el objeto con la nueva subscripción:
