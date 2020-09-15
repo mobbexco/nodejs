@@ -62,6 +62,29 @@ mobbex.checkout.create(checkout)
     .catch(error => console.log(error))
 ```
 
+### Ordenes de Pago
+##### Crear
+Para crear un checkout se utiliza ``paymentOrder.create`` pasando como parametro el objeto de la orden de pago:
+```javascript
+paymentOder =
+{
+  total: 100,
+  description: "Some Description #3",
+  actions: [
+    {
+      icon: "attachment",
+      title: "Factura",
+      url: "https://speryans.com/mifactura/123"
+    }
+  ],
+  reference: "mi_referencia_123"
+}
+
+mobbex.paymentOrder.create(paymentOrder)
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
+```
+
 ### Subscripciones
 ##### Crear
 Para crear una subscripción se utiliza ``subscriptions.create`` pasando como parametro el objeto con la nueva subscripción:
