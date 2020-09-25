@@ -86,7 +86,7 @@ const split =
   ]
 }
 
-mobbex.checkout.create(split)
+mobbex.checkout.split(split)
     .then(data => console.log(data))
     .catch(error => console.log(error))
 ```
