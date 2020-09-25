@@ -61,6 +61,35 @@ mobbex.checkout.create(checkout)
     .then(data => console.log(data))
     .catch(error => console.log(error))
 ```
+### Split
+##### Checkout con Split
+Para realizar un checkout con modalidad split se utiliza ``checkout.split``:
+```javascript
+const split =
+{
+  total: 1000,
+  currency: "ars",
+  reference: "12345",
+  split: [
+    {
+      tax_id: "30121231235",
+      total: 900,
+      reference: "pago_1",
+      fee: 100
+    },
+    {
+      tax_id: "33213213216",
+      total: 100,
+      reference: "pago_2",
+      fee: 80
+    }
+  ]
+}
+
+mobbex.checkout.create(split)
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
+```
 
 ### Ordenes de Pago
 ##### Crear
