@@ -3,6 +3,8 @@ const chaiPromise = require('chai-as-promised')
 const assert = chai.assert;
 const loyalty = require('../lib/resources/loyalty')
 const auditKeyCheck = require('../lib/utils/auditKeyCheck')
+const configuration = require('../lib/configurations')
+
 chai.use(chaiPromise)
 
 describe('Loyalty Module', () => {
@@ -14,5 +16,11 @@ describe('Loyalty Module', () => {
     })
   })
 
+  describe('Successfully handle Loyalty Module', () => {
+    it('Should get the audit key', () => {
+      configuration.setAuditKey('audit-key')
+      assert.equal(configuration.getAuditKey(), 'audit-key')
+    })
+  })
   //Other testing
 })
