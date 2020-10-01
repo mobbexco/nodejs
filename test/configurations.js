@@ -41,4 +41,12 @@ describe('Configurations Module', () => {
       }), 'You cannot change Api Key or Access Token because are already set');
     });
   });
+
+  describe('Audit Key', () => {
+    it('Should get the Audit Key', () => {
+      configuration.setAuditKey('audit-key')
+
+      assert.equal(configuration.getAuditKey(), 'audit-key')
+    })
+  })
 });
