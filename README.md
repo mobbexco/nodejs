@@ -91,6 +91,14 @@ mobbex.checkout.split(split)
     .catch(error => console.log(error))
 ```
 
+##### Liberar Fondos
+Para liberar fondos retenidos durante una operación de tipo Split simplemente se utiliza ``checkout.release``:
+```javascript
+mobbex.checkout.release('ID')
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
+```
+
 ### Ordenes de Pago
 ##### Crear
 Para crear un checkout se utiliza ``paymentOrder.create`` pasando como parametro el objeto de la orden de pago:

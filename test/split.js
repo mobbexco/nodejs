@@ -80,5 +80,10 @@ describe('Split', () => {
         ]
       }))
     })
+
+    it('Should correctly release a Split', () => {
+      assert.isFulfilled(checkout.release('123123123'))
+    })
+
   })
 })
