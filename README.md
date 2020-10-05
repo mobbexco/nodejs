@@ -272,3 +272,22 @@ mobbex.subscribers.move('ID', 'SID', {
     .then(data => console.log(data))
     .catch(error => console.log(error))
 ```
+
+### Dev Connect
+##### Crear Solicitud
+Para crear una solicitud se utiliza ``devConnect.create`` pasando como parametro el objeto con el url de retorno:
+```javascript
+mobbex.devConnect.create({
+    return_url: "https://mobbex.com/"
+})
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
+```
+
+##### Obtener Credenciales
+Para obtener credenciales se utiliza ``devConnect.get`` pasando como parametro el ID de la solicitud:
+```javascript
+mobbex.devConnect.get('ID')
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
+```
