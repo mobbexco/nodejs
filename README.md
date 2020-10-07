@@ -122,6 +122,19 @@ mobbex.paymentOrder.create(paymentOrder)
     .catch(error => console.log(error))
 ```
 
+### Códigos de Barra o Insertados
+##### Crear
+Se utiliza ``paymentCode.create`` pasando como parametro el código y un objeto con los parametros:
+```javascript
+mobbex.paymentCode.create("CODIGO", {
+    reference: 'reference',
+    total: 3230,
+    expiration: '01-12-2020'
+})
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
+```
+
 ### Subscripciones
 ##### Crear
 Para crear una subscripción se utiliza ``subscriptions.create`` pasando como parametro el objeto con la nueva subscripción:
