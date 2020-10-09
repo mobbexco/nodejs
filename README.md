@@ -132,7 +132,7 @@ mobbex.paymentOrder.create(paymentOrder)
 
 ### Métodos de Pago y Cuotas
 ##### Listado de Métodos de Pago
-Para listar los métodos de pago se utiliza ``sources.list`` pasando como argumento el código de acceso y el total:
+Para listar los métodos de pago se utiliza ``sources.list`` pasando como argumentos el código de acceso y el total:
 ```javascript
 mobbex.sources.list("CODIGO", 200)
     .then(data => console.log(data))
@@ -141,7 +141,7 @@ mobbex.sources.list("CODIGO", 200)
 
 ### Códigos de Barra o Insertados
 ##### Crear
-Se utiliza ``paymentCode.create`` pasando como argumento el código y un objeto con los parámetros:
+Se utiliza ``paymentCode.create`` pasando como argumentos el código y un objeto con los parámetros:
 ```javascript
 mobbex.paymentCode.create("CODIGO", {
     reference: 'reference',
@@ -408,7 +408,7 @@ mobbex.transactions.refund("ID")
 ```
 
 ##### Devolución Parcial
-Se utiliza ``transactions.partialRefund`` pasando como argumento el ID de la transacción y el total:
+Se utiliza ``transactions.partialRefund`` pasando como argumentos el ID de la transacción y el total:
 ```javascript
 mobbex.transactions.partialRefund("ID", 200)
     .then(data => console.log(data))
