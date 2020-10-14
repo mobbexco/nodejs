@@ -28,18 +28,10 @@ describe('Wallet', () => {
                     webhook: "https://localhost:8443/sale/webhook?user=1234"
             }))
         })
-
-        it('Expect error no Public Key', () => {
-            assert.isRejected(checkout.process("INTENTCODE", {
-                installment: "1",
-                securityCode: "765"
-            }))
-        })
     })
 
     describe('Sucessfully handle wallet operations', () => {
 
-        configuration.setPublicKey('PUBLIC-KEY')
         configuration.setPrivateKey('PRIVATE-KEY')
 
         it('Should create a checkout with a wallet', () => {
@@ -60,13 +52,6 @@ describe('Wallet', () => {
                     wallet: true,
                     return_url: "https://localhost:8443/sale/return?session=56789",
                     webhook: "https://localhost:8443/sale/webhook?user=1234"
-            }))
-        })
-
-        it('Should process the checkout', () => {
-            assert.ok(checkout.process("Intent-Token", {
-                installment: "1",
-                securityCode: "765"
             }))
         })
     })
