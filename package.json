@@ -9,17 +9,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GrosfeldEzekiel/mobbex-node.git"
+    "url": "git+https://github.com/mobbexco/nodejs.git"
   },
   "keywords": [
     "mobbex"
   ],
   "author": "Ezekiel Grosfeld",
-  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/GrosfeldEzekiel/mobbex-node/issues"
+    "url": "https://github.com/mobbexco/nodejs/issues"
   },
-  "homepage": "https://github.com/GrosfeldEzekiel/mobbex-node#readme",
+  "homepage": "https://github.com/mobbexco/nodejs#readme",
   "dependencies": {
     "ajv": "^6.12.4",
     "bluebird": "^3.7.2",
