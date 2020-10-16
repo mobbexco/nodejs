@@ -1,6 +1,6 @@
 {
   "name": "mobbex",
-  "version": "1.11.1",
+  "version": "1.11.2",
   "description": "Mobbex Integration Package",
   "main": "index.js",
   "scripts": {
