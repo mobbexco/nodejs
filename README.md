@@ -1,8 +1,8 @@
 # Mobbex
 [![Version](https://img.shields.io/npm/v/mobbex.svg)](https://www.npmjs.org/package/mobbex)
-[![Build Status](https://travis-ci.org/GrosfeldEzekiel/mobbex-node.svg?branch=master)](https://travis-ci.org/GrosfeldEzekiel/mobbex-node)
+[![Build Status](https://travis-ci.org/mobbexco/nodejs.svg?branch=master)](https://travis-ci.org/github/mobbexco/nodejs)
 [![Downloads](https://img.shields.io/npm/dt/mobbex.svg)](http://npmjs.com/package/mobbex)
-[![License](https://img.shields.io/apm/l/vim-mode)](https://github.com/GrosfeldEzekiel/mobbex-node/blob/master/LICENSE)
+[![License](https://img.shields.io/apm/l/vim-mode)](https://github.com/mobbexco/nodejs/blob/master/LICENSE)
 
 
 ## Instalación
