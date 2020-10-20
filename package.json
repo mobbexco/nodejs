@@ -15,6 +15,7 @@
     "mobbex"
   ],
   "author": "Ezekiel Grosfeld",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mobbexco/nodejs/issues"
   },
