@@ -8,7 +8,7 @@
     "lib/**/**"
   ],
   "scripts": {
-    "build": "npm test && tsc -p tsconfig.json",
+    "build": "npm test && npm run lint && tsc -p tsconfig.json",
     "test": "nyc mocha --require ts-node/register --watch-extensions ts,tsx 'test/**/*.{ts,tsx}'",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
@@ -37,6 +37,7 @@
     "request": "^2.88.2"
   },
   "devDependencies": {
+    "@types/bluebird": "^3.5.33",
     "@types/chai": "^4.2.14",
     "@types/chai-as-promised": "^7.1.3",
     "@types/mocha": "^8.0.4",
