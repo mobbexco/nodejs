@@ -1,7 +1,7 @@
 import * as chai from "chai";
 import * as chaiAsPromised from "chai-as-promised";
 import { assert } from "chai";
-const devConnect = require("../src/resources/devConnect");
+import devConnect from "../src/resources/devConnect";
 
 chai.use(chaiAsPromised);
 

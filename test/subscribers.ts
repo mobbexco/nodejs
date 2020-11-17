@@ -2,7 +2,7 @@ import * as chai from "chai";
 import * as chaiAsPromised from "chai-as-promised";
 import { assert } from "chai";
 import configuration from "../src/configurations";
-const subscribers = require("../src/resources/subscribers");
+import subscribers from "../src/resources/subscribers";
 
 chai.use(chaiAsPromised);
 
@@ -11,8 +11,8 @@ describe("Subscribers Module", () => {
     apiKey: "zJ8LFTBX6Ba8D611e9io13fDZAwj0QmKO1Hn1yIj",
     accessToken: "d31f0721-2f85-44e7-bcc6-15e19d1a53cc",
   });
-  let id = "mv4vuUGYG";
-  let sid = "Mw57pJPU~";
+  const id = "mv4vuUGYG";
+  const sid = "Mw57pJPU~";
   describe("Successfully handle subscribers", () => {
     it("Should create new subscriber", () => {
       assert.isFulfilled(
@@ -61,30 +61,6 @@ describe("Subscribers Module", () => {
 
     it("Should move the user", () => {
       assert.isFulfilled(subscribers.move(id, sid, { sid: "newsubscription" }));
-    });
-  });
-
-  describe("Error in subscription module functions", () => {
-    it("Expect error in id type argument", () => {
-      assert.throws(
-        subscribers.activate.bind(subscribers, 300, sid),
-        "Wrong type argument. 300 must be string, is number"
-      );
-    });
-
-    it("Expect error in missing id argument", () => {
-      assert.throws(subscribers.activate, "Missing argument");
-    });
-
-    it("Expect error sid type argument", () => {
-      assert.throws(
-        subscribers.activate.bind(subscribers, id, 300),
-        "Wrong type argument. 300 must be string, is number"
-      );
-    });
-
-    it("Expect error sid missing id argument", () => {
-      assert.throws(subscribers.activate, "Missing argument");
     });
   });
 

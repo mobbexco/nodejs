@@ -1,17 +1,20 @@
 import Request from "../requests";
 import schema from "../models/paymentOrderModel";
+import Bluebird = require("bluebird");
 
-const requestManager = new Request();
+export class PaymentOrder {
+  requestManager: Request = new Request();
 
-const paymenOrderModule = module.exports;
+  create(body: Record<string, unknown>): Bluebird<unknown> {
+    return this.requestManager.create(
+      {
+        path: `/payment_order`,
+        method: "POST",
+        schema,
+      },
+      body
+    );
+  }
+}
 
-paymenOrderModule.create = (body: any) => {
-  return requestManager.create(
-    {
-      path: `/payment_order`,
-      method: "POST",
-      schema,
-    },
-    body
-  );
-};
+export default new PaymentOrder();

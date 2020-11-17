@@ -1,60 +1,58 @@
+import Bluebird = require("bluebird");
 import schema from "../models/subscriptionModel";
 import Request from "../requests";
-import { paramsCheck as check } from "../utils/parametersCheck";
 
-const request = new Request();
+export class Subscription {
+  request: Request = new Request();
 
-const subscriptionsModule = module.exports;
+  create(body: Record<string, unknown>): Bluebird<unknown> {
+    return this.request.create(
+      {
+        path: "/subscriptions",
+        method: "POST",
+        schema,
+      },
+      body
+    );
+  }
 
-subscriptionsModule.create = (body: any) => {
-  return request.create(
-    {
+  edit(id: string, body: Record<string, unknown>): Bluebird<unknown> {
+    return this.request.create(
+      {
+        path: `/subscriptions/${id}`,
+        method: "POST",
+      },
+      body
+    );
+  }
+
+  all(): Bluebird<unknown> {
+    return this.request.create({
       path: "/subscriptions",
-      method: "POST",
-      schema,
-    },
-    body
-  );
-};
+      method: "GET",
+    });
+  }
 
-subscriptionsModule.edit = (id: string, body: any) => {
-  check(id);
-  return request.create(
-    {
+  find(id: string): Bluebird<unknown> {
+    return this.request.create({
       path: `/subscriptions/${id}`,
-      method: "POST",
-    },
-    body
-  );
-};
+      method: "GET",
+    });
+  }
 
-subscriptionsModule.all = () => {
-  return request.create({
-    path: "/subscriptions",
-    method: "GET",
-  });
-};
+  activate(id: string): Bluebird<unknown> {
+    return this.request.create({
+      path: `/subscriptions/${id}/action/activate`,
+      method: "GET",
+    });
+  }
 
-subscriptionsModule.find = (id: string) => {
-  check(id);
-  return request.create({
-    path: `/subscriptions/${id}`,
-    method: "GET",
-  });
-};
+  delete(id: string): Bluebird<unknown> {
+    return this.request.create({
+      path: `/subscriptions/${id}/action/delete`,
+      method: "GET",
+    });
+  }
+}
 
-subscriptionsModule.activate = (id: string) => {
-  check(id);
-  return request.create({
-    path: `/subscriptions/${id}/action/activate`,
-    method: "GET",
-  });
-};
-
-subscriptionsModule.delete = (id: string) => {
-  check(id);
-  return request.create({
-    path: `/subscriptions/${id}/action/delete`,
-    method: "GET",
-  });
-};
+export default new Subscription();

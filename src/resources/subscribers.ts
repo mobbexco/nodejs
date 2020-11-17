@@ -1,88 +1,91 @@
 import Request from "../requests";
 import schema from "../models/subscriberModel";
-import { paramsCheck as check } from "../utils/parametersCheck";
+import Bluebird = require("bluebird");
 
-const requestManager = new Request();
+export class Subscriber {
+  requestManager: Request = new Request();
 
-const subscribersModule = module.exports;
+  create = (id: string, body: Record<string, unknown>): Bluebird<unknown> => {
+    return this.requestManager.create(
+      {
+        path: `/subscriptions/${id}/subscriber`,
+        method: "POST",
+        schema,
+      },
+      body
+    );
+  };
 
-subscribersModule.create = (id: string, body: any) => {
-  check(id);
-  return requestManager.create(
-    {
+  all = (id: string): Bluebird<unknown> => {
+    return this.requestManager.create({
       path: `/subscriptions/${id}/subscriber`,
-      method: "POST",
-      schema,
-    },
-    body
-  );
-};
+      method: "GET",
+    });
+  };
 
-subscribersModule.all = (id: string) => {
-  check(id);
-  return requestManager.create({
-    path: `/subscriptions/${id}/subscriber`,
-    method: "GET",
-  });
-};
-
-subscribersModule.find = (id: string, sid: string) => {
-  return requestManager.create({
-    path: `/subscriptions/${id}/subscriber/${sid}`,
-    method: "GET",
-  });
-};
-
-subscribersModule.edit = (id: string, sid: string, body: any) => {
-  check(id);
-  check(sid);
-  return requestManager.create(
-    {
+  find = (id: string, sid: string): Bluebird<unknown> => {
+    return this.requestManager.create({
       path: `/subscriptions/${id}/subscriber/${sid}`,
-      method: "POST",
-    },
-    body
-  );
-};
+      method: "GET",
+    });
+  };
 
-subscribersModule.suspend = (id: string, sid: string) => {
-  check(id);
-  check(sid);
-  return requestManager.create({
-    path: `/subscriptions/${id}/subscriber/${sid}/action/suspend`,
-    method: "GET",
-  });
-};
+  edit = (
+    id: string,
+    sid: string,
+    body: Record<string, unknown>
+  ): Bluebird<unknown> => {
+    id;
+    return this.requestManager.create(
+      {
+        path: `/subscriptions/${id}/subscriber/${sid}`,
+        method: "POST",
+      },
+      body
+    );
+  };
 
-subscribersModule.activate = (id: string, sid: string) => {
-  check(id);
-  check(sid);
-  return requestManager.create({
-    path: `/subscriptions/${id}/subscriber/${sid}/action/activate`,
-    method: "GET",
-  });
-};
+  suspend = (id: string, sid: string): Bluebird<unknown> => {
+    return this.requestManager.create({
+      path: `/subscriptions/${id}/subscriber/${sid}/action/suspend`,
+      method: "GET",
+    });
+  };
 
-subscribersModule.reschedule = (id: string, sid: string, body: any) => {
-  check(id);
-  check(sid);
-  return requestManager.create(
-    {
-      path: `/subscriptions/${id}/subscriber/${sid}/action/reschedule`,
-      method: "POST",
-    },
-    body
-  );
-};
+  activate = (id: string, sid: string): Bluebird<unknown> => {
+    return this.requestManager.create({
+      path: `/subscriptions/${id}/subscriber/${sid}/action/activate`,
+      method: "GET",
+    });
+  };
 
-subscribersModule.move = (id: string, sid: string, body: any) => {
-  check(id);
-  check(sid);
-  return requestManager.create(
-    {
-      path: `/subscriptions/${id}/subscriber/${sid}/action/move`,
-      method: "POST",
-    },
-    body
-  );
-};
+  reschedule = (
+    id: string,
+    sid: string,
+    body: Record<string, unknown>
+  ): Bluebird<unknown> => {
+    return this.requestManager.create(
+      {
+        path: `/subscriptions/${id}/subscriber/${sid}/action/reschedule`,
+        method: "POST",
+      },
+      body
+    );
+  };
+
+  move = (
+    id: string,
+    sid: string,
+    body: Record<string, unknown>
+  ): Bluebird<unknown> => {
+    return this.requestManager.create(
+      {
+        path: `/subscriptions/${id}/subscriber/${sid}/action/move`,
+        method: "POST",
+      },
+      body
+    );
+  };
+}
+
+export default new Subscriber();

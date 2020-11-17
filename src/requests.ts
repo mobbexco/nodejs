@@ -5,73 +5,74 @@ import axios from "axios";
 const JSON_MIME_TYPE = "application/json";
 
 export default class Request {
-  create(options: any, data?: any) {
-    return new Promise((resolve: any, reject: any) => {
-      const schema = options.schema;
-      const url = options.transactions
-        ? "https://api.mobbex.com/2.0"
-        : "https://api.mobbex.com/p";
-      const path = options.path;
-      const method = options.method;
+  create(
+    options: Record<string, unknown>,
+    data?: Record<string, unknown>
+  ): Promise<unknown> {
+    return new Promise(
+      (
+        resolve: (thenableOrResult?: unknown) => void,
+        reject: (error?: Error) => void
+      ) => {
+        const schema = options.schema as Record<string, unknown>;
+        const url = options.transactions
+          ? "https://api.mobbex.com/2.0"
+          : "https://api.mobbex.com/p";
+        const path = options.path;
+        const method = options.method;
 
-      const headers: any = options.private
-        ? this.setHeaders("private")
-        : this.setHeaders();
+        const headers = options.private
+          ? this.setHeaders("private")
+          : this.setHeaders();
 
-      let body: any = {};
-      let error: Error;
+        let error: Error;
 
-      if (method === "POST" || method === "PUT") {
-        if (!data) {
-          error = new Error("Expecting two arguments, one given");
-          reject(error);
-        }
-      }
-      if (data) {
-        if (typeof data === "object") body = data;
-        else {
-          error = new Error("Expecting last argument be of type Object");
-          reject(error);
-        }
-      }
-
-      if (method === "GET") {
-        axios({
-          method,
-          url: url + path,
-          headers,
-        })
-          .then((response) => {
-            resolve(response.data);
-          })
-          .catch((requestError) => reject(new Error(requestError)));
-      }
-
-      if (method === "POST") {
-        if (schema) {
-          let errors;
-          errors = validation.validate(schema, body);
-          if (errors.length > 0) {
-            error = new Error(validation.message(errors));
+        if (method === "POST" || method === "PUT") {
+          if (!data) {
+            error = new Error("Expecting two arguments, one given");
             reject(error);
           }
         }
-        axios({
-          method,
-          url: url + path,
-          headers,
-          data: body,
-        })
-          .then((response) => {
-            resolve(response.data);
+
+        const body: Record<string, unknown> | undefined = data && data;
+
+        if (method === "GET") {
+          axios({
+            method,
+            url: url + path,
+            headers,
           })
-          .catch((requestError) => reject(new Error(requestError)));
+            .then((response) => {
+              resolve(response.data);
+            })
+            .catch((requestError) => reject(new Error(requestError)));
+        }
+
+        if (method === "POST") {
+          if (schema) {
+            const errors = validation.validate(schema, body);
+            if (errors.length > 0) {
+              error = new Error(validation.message(errors));
+              reject(error);
+            }
+          }
+          axios({
+            method,
+            url: url + path,
+            headers,
+            data: body,
+          })
+            .then((response) => {
+              resolve(response.data);
+            })
+            .catch((requestError) => reject(new Error(requestError)));
+        }
       }
-    });
+    );
   }
 
   /* istanbul ignore next */
-  setHeaders(type?: string) {
+  setHeaders(type?: string): Record<string, unknown> {
     let headers = {};
     let error: Error;
 

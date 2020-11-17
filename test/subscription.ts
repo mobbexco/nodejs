@@ -1,12 +1,12 @@
 import * as chai from "chai";
 import * as chaiAsPromised from "chai-as-promised";
 import { assert } from "chai";
-const subscription = require("../src/resources/subscription");
+import subscription from "../src/resources/subscription";
 
 chai.use(chaiAsPromised);
 
 describe("Subscription Module", () => {
-  let id = "mv4vuUGYG";
+  const id = "mv4vuUGYG";
   describe("Successfully handle subscrptions", () => {
     it("Should create a new subscription", () => {
       assert.isFulfilled(
@@ -48,19 +48,6 @@ describe("Subscription Module", () => {
 
     it("Should delete the subscription", () => {
       assert.isFulfilled(subscription.delete(id));
-    });
-  });
-
-  describe("Error with function parameters", () => {
-    it("Expect error in id type argument", () => {
-      assert.throws(
-        subscription.activate.bind(subscription, 300, id),
-        "Wrong type argument. 300 must be string, is number"
-      );
-    });
-
-    it("Expect error in missing id argument", () => {
-      assert.throws(subscription.activate, "Missing argument");
     });
   });
 

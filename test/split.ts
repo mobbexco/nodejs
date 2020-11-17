@@ -2,7 +2,7 @@ import * as chai from "chai";
 import * as chaiAsPromised from "chai-as-promised";
 import { assert } from "chai";
 import { splitCheck } from "../src/utils/splitCheck";
-const checkout = require("../src/resources/checkout");
+import checkout from "../src/resources/checkout";
 
 chai.use(chaiAsPromised);
 

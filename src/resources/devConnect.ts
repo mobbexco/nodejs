@@ -1,26 +1,27 @@
 import Request from "../requests";
 import schema from "../models/devConnectModel";
-import { paramsCheck as check } from "../utils/parametersCheck";
+import Bluebird = require("bluebird");
 
-const requestManager = new Request();
+export class DevConnect {
+  requestManager: Request = new Request();
 
-const devConnectModule = module.exports;
+  create(body: Record<string, unknown>): Bluebird<unknown> {
+    return this.requestManager.create(
+      {
+        path: `/developer/connect`,
+        method: "POST",
+        schema,
+      },
+      body
+    );
+  }
 
-devConnectModule.create = (body: any) => {
-  return requestManager.create(
-    {
-      path: `/developer/connect`,
-      method: "POST",
-      schema,
-    },
-    body
-  );
-};
+  get(id: string): Bluebird<unknown> {
+    return this.requestManager.create({
+      path: `/developer/connect/${id}/credentials`,
+      method: "GET",
+    });
+  }
+}
 
-devConnectModule.get = (id: string) => {
-  check(id);
-  return requestManager.create({
-    path: `/developer/connect/${id}/credentials`,
-    method: "GET",
-  });
-};
+export default new DevConnect();

@@ -1,11 +1,11 @@
-export function splitCheck(object: any) {
-  const total = object.total;
-  const splitArray = object.split;
+export function splitCheck(object: Record<string, unknown>): void {
+  const total = object.total as number;
+  const splitArray = object.split as Record<string, string | number>[];
 
   let splitsTotal = 0;
 
-  splitArray.forEach((entity: any) => {
-    const entityTotal = entity.total;
+  splitArray.forEach((entity: Record<string, string | number>) => {
+    const entityTotal = entity.total as number;
     splitsTotal += entityTotal;
   });
 

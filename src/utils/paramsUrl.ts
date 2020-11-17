@@ -1,8 +1,10 @@
 import validation from "../validation";
 
-export function objectToUrl(schema: any, object: any) {
-  let errors;
-  errors = validation.validate(schema, object);
+export function objectToUrl(
+  schema: Record<string, unknown>,
+  object: Record<string, string | number | boolean>
+): string {
+  const errors = validation.validate(schema, object);
   if (errors.length > 0) {
     throw new Error(validation.message(errors));
   }
@@ -10,7 +12,7 @@ export function objectToUrl(schema: any, object: any) {
   let url = "";
   for (const key in object) {
     /* istanbul ignore if */
-    if (!object.hasOwnProperty(key)) {
+    if (!Object.prototype.hasOwnProperty.call(object, key)) {
       continue;
     }
     if (url !== "") {

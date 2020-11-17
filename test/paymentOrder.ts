@@ -1,7 +1,7 @@
 import * as chai from "chai";
 import * as chaiAsPromised from "chai-as-promised";
 import { assert } from "chai";
-const paymentOrder = require("../src/resources/paymentOrder");
+import paymentOrder from "../src/resources/paymentOrder";
 
 chai.use(chaiAsPromised);
 

@@ -1,4 +1,4 @@
-class Configurations {
+export class Configuration {
   apiKey?: string;
   accessToken?: string;
   auditKey?: string;
@@ -12,35 +12,35 @@ class Configurations {
     apiKey?: string;
     accessToken?: string;
     auditKey?: string;
-  }) {
+  }): void {
     this.apiKey = apiKey;
     this.accessToken = accessToken;
     this.auditKey = auditKey;
   }
 
-  setAuditKey(aKey: string) {
+  setAuditKey(aKey: string): void {
     this.auditKey = aKey;
   }
 
-  setPrivateKey(privKey: string) {
+  setPrivateKey(privKey: string): void {
     this.privateKey = privKey;
   }
 
-  getApiKey() {
+  getApiKey(): string | undefined {
     return this.apiKey;
   }
 
-  getAccessToken() {
+  getAccessToken(): string | undefined {
     return this.accessToken;
   }
 
-  getAuditKey() {
+  getAuditKey(): string | undefined {
     return this.auditKey;
   }
 
-  getPrivateKey() {
+  getPrivateKey(): string | undefined {
     return this.privateKey;
   }
 }
 
-export default new Configurations();
+export default new Configuration();

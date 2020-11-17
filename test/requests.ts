@@ -16,11 +16,5 @@ describe("Requests Module", () => {
         "Expecting two arguments, one given"
       );
     });
-    it("Expect last argument object error", () => {
-      assert.isRejected(
-        requests.create({ path: "/subscriptions", method: "POST" }, 345),
-        "Expecting last argument be of type Object"
-      );
-    });
   });
 });

@@ -1,7 +1,7 @@
 import * as chai from "chai";
 import * as chaiAsPromised from "chai-as-promised";
 import { assert } from "chai";
-const loyalty = require("../src/resources/loyalty");
+import loyalty from "../src/resources/loyalty";
 import { auditKeyCheck } from "../src/utils/auditKeyCheck";
 import configuration from "../src/configurations";
 

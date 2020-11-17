@@ -1,19 +1,15 @@
+import Bluebird = require("bluebird");
 import Request from "../requests";
-import { paramsCheck as check } from "../utils/parametersCheck";
 
-const requestManager = new Request();
+export class Sources {
+  requestManager: Request = new Request();
 
-const sourcesModule = module.exports;
-
-sourcesModule.list = (code: string, total: number) => {
-  let newTotal;
-  if (typeof total !== "string" && typeof total !== "undefined") {
-    newTotal = total.toString();
+  list(code: string, total: number): Bluebird<unknown> {
+    return this.requestManager.create({
+      path: `/sources/list/${code}?total=${total}`,
+      method: "GET",
+    });
   }
-  check(code);
-  check(newTotal);
-  return requestManager.create({
-    path: `/sources/list/${code}?total=${total}`,
-    method: "GET",
-  });
-};
+}
+
+export default new Sources();

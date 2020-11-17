@@ -3,55 +3,58 @@ import { auditKeyCheck } from "../utils/auditKeyCheck";
 import searchSchema from "../models/loyaltySearchModel";
 import createSchema from "../models/loyaltyCreateModel";
 import chargeSchema from "../models/loyaltyChargeModel";
+import Bluebird = require("bluebird");
 
-const requestManager = new Request();
+export class Loyalty {
+  requestManager: Request = new Request();
 
-const loyaltyModule = module.exports;
+  create(body: Record<string, unknown>): Bluebird<unknown> {
+    auditKeyCheck();
+    return this.requestManager.create(
+      {
+        path: "/loyalty/accounts/create",
+        method: "POST",
+        schema: createSchema,
+      },
+      body
+    );
+  }
 
-loyaltyModule.create = (body: any) => {
-  auditKeyCheck();
-  return requestManager.create(
-    {
-      path: "/loyalty/accounts/create",
-      method: "POST",
-      schema: createSchema,
-    },
-    body
-  );
-};
+  search(body: Record<string, unknown>): Bluebird<unknown> {
+    auditKeyCheck();
+    return this.requestManager.create(
+      {
+        path: "/loyalty/accounts/search",
+        method: "POST",
+        schema: searchSchema,
+      },
+      body
+    );
+  }
 
-loyaltyModule.search = (body: any) => {
-  auditKeyCheck();
-  return requestManager.create(
-    {
-      path: "/loyalty/accounts/search",
-      method: "POST",
-      schema: searchSchema,
-    },
-    body
-  );
-};
+  balance(body: Record<string, unknown>): Bluebird<unknown> {
+    auditKeyCheck();
+    return this.requestManager.create(
+      {
+        path: "/loyalty/accounts/balance",
+        method: "POST",
+        schema: searchSchema,
+      },
+      body
+    );
+  }
 
-loyaltyModule.balance = (body: any) => {
-  auditKeyCheck();
-  return requestManager.create(
-    {
-      path: "/loyalty/accounts/balance",
-      method: "POST",
-      schema: searchSchema,
-    },
-    body
-  );
-};
+  charge(body: Record<string, unknown>): Bluebird<unknown> {
+    auditKeyCheck();
+    return this.requestManager.create(
+      {
+        path: "/loyalty/points/charge",
+        method: "POST",
+        schema: chargeSchema,
+      },
+      body
+    );
+  }
+}
 
-loyaltyModule.charge = (body: any) => {
-  auditKeyCheck();
-  return requestManager.create(
-    {
-      path: "/loyalty/points/charge",
-      method: "POST",
-      schema: chargeSchema,
-    },
-    body
-  );
-};
+export default new Loyalty();
