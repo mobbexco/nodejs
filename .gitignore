@@ -106,5 +106,6 @@ dist
 # Idea
 .idea/
 
-# Node Modules
-.node-modules/
+/lib
+
+package-lock.json
