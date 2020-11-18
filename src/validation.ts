@@ -1,35 +1,31 @@
-import * as Ajv from "ajv";
+/* eslint-disable */
+const Validator = require("fastest-validator");
+/* eslint-enable */
+import { ValidationSchema, ValidationError } from "fastest-validator";
 
-class Validation {
-  ajv = new Ajv({
-    allErrors: true,
-    removeAdditional: false,
-    coerceTypes: false,
-  });
+export class Validation {
+  v = new Validator();
 
-  /* istanbul ignore next */
-  validate(schema: Record<string, unknown>, data: unknown): Ajv.ErrorObject[] {
-    const validate: Ajv.ValidateFunction = this.ajv.compile(schema);
-    const valid = validate(data);
-    const validationErrors: Ajv.ErrorObject[] = [];
-
-    if (!valid) {
-      validate.errors?.forEach((error: Ajv.ErrorObject) => {
-        validationErrors.push(error);
+  validate(data: unknown, schema: ValidationSchema): ValidationError[] {
+    const errors: ValidationError[] = [];
+    const validator: boolean | ValidationError[] = this.v.validate(
+      data,
+      schema
+    );
+    if (typeof validator !== "boolean") {
+      validator.forEach((error) => {
+        errors.push(error);
       });
     }
-    return validationErrors;
+
+    return errors;
   }
 
-  message(validationErrors: Ajv.ErrorObject[]) {
-    let message = "Failing object validation:";
-    validationErrors.forEach((error: Ajv.ErrorObject) => {
-      if (error.keyword === "required") {
-        message += ` ${error.message}.`;
-      } else message += ` ${error.dataPath}: ${error.message}.`;
+  message(validationErrors: ValidationError[]): string {
+    let message = "Failing object validation:\n";
+    validationErrors.forEach((error) => {
+      message += `${error.message}\n`;
     });
     return message;
   }
 }
-
-export default new Validation();

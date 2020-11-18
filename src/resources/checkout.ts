@@ -2,11 +2,10 @@ import Request from "../requests";
 import schema from "../models/checkoutModel";
 import walletSchema from "../models/walletModel";
 import { splitCheck } from "../utils/splitCheck";
-import Bluebird = require("bluebird");
 
 export class Checkout {
   requestManager: Request = new Request();
-  create(body: Record<string, unknown>): Bluebird<unknown> {
+  create(body: Record<string, unknown>): Promise<unknown> {
     if (body.wallet) {
       return this.requestManager.create(
         {
@@ -29,7 +28,7 @@ export class Checkout {
     }
   }
 
-  split(body: Record<string, unknown>): Bluebird<unknown> {
+  split(body: Record<string, unknown>): Promise<unknown> {
     splitCheck(body);
     return this.requestManager.create(
       {
@@ -41,7 +40,7 @@ export class Checkout {
     );
   }
 
-  release(id: string): Bluebird<unknown> {
+  release(id: string): Promise<unknown> {
     return this.requestManager.create({
       path: `/operations/${id}/release`,
       method: "GET",

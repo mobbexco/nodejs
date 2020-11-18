@@ -1,38 +1,21 @@
-const schema = {
-  required: ["customer", "startDate"],
-  properties: {
-    customer: {
-      type: "object",
-      properties: {
-        identification: {
-          type: "string",
-        },
-        email: {
-          type: "string",
-          format: "email",
-        },
-        name: {
-          type: "string",
-        },
-        phone: {
-          type: "string",
-        },
-      },
+import { ValidationSchema } from "fastest-validator";
+
+const schema: ValidationSchema = {
+  customer: {
+    type: "object",
+    props: {
+      identification: "string",
+      email: "email",
+      name: "string",
+      phone: "string",
     },
-    reference: {
-      type: "string",
-    },
-    startDate: {
-      required: ["day", "month"],
-      type: "object",
-      properties: {
-        day: {
-          type: "integer",
-        },
-        month: {
-          type: "integer",
-        },
-      },
+  },
+  reference: "string",
+  startDate: {
+    type: "object",
+    props: {
+      day: "integer",
+      month: "integer",
     },
   },
 };

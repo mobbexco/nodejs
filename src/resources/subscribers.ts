@@ -1,11 +1,10 @@
 import Request from "../requests";
 import schema from "../models/subscriberModel";
-import Bluebird = require("bluebird");
 
 export class Subscriber {
   requestManager: Request = new Request();
 
-  create = (id: string, body: Record<string, unknown>): Bluebird<unknown> => {
+  create = (id: string, body: Record<string, unknown>): Promise<unknown> => {
     return this.requestManager.create(
       {
         path: `/subscriptions/${id}/subscriber`,
@@ -16,14 +15,14 @@ export class Subscriber {
     );
   };
 
-  all = (id: string): Bluebird<unknown> => {
+  all = (id: string): Promise<unknown> => {
     return this.requestManager.create({
       path: `/subscriptions/${id}/subscriber`,
       method: "GET",
     });
   };
 
-  find = (id: string, sid: string): Bluebird<unknown> => {
+  find = (id: string, sid: string): Promise<unknown> => {
     return this.requestManager.create({
       path: `/subscriptions/${id}/subscriber/${sid}`,
       method: "GET",
@@ -34,7 +33,7 @@ export class Subscriber {
     id: string,
     sid: string,
     body: Record<string, unknown>
-  ): Bluebird<unknown> => {
+  ): Promise<unknown> => {
     id;
     return this.requestManager.create(
       {
@@ -45,14 +44,14 @@ export class Subscriber {
     );
   };
 
-  suspend = (id: string, sid: string): Bluebird<unknown> => {
+  suspend = (id: string, sid: string): Promise<unknown> => {
     return this.requestManager.create({
       path: `/subscriptions/${id}/subscriber/${sid}/action/suspend`,
       method: "GET",
     });
   };
 
-  activate = (id: string, sid: string): Bluebird<unknown> => {
+  activate = (id: string, sid: string): Promise<unknown> => {
     return this.requestManager.create({
       path: `/subscriptions/${id}/subscriber/${sid}/action/activate`,
       method: "GET",
@@ -63,7 +62,7 @@ export class Subscriber {
     id: string,
     sid: string,
     body: Record<string, unknown>
-  ): Bluebird<unknown> => {
+  ): Promise<unknown> => {
     return this.requestManager.create(
       {
         path: `/subscriptions/${id}/subscriber/${sid}/action/reschedule`,
@@ -77,7 +76,7 @@ export class Subscriber {
     id: string,
     sid: string,
     body: Record<string, unknown>
-  ): Bluebird<unknown> => {
+  ): Promise<unknown> => {
     return this.requestManager.create(
       {
         path: `/subscriptions/${id}/subscriber/${sid}/action/move`,

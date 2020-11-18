@@ -13,7 +13,7 @@ describe("Payments Code Module", () => {
           reference: "reference",
           expiration: "01-12-2020",
         }),
-        "Failing object validation: should have required property 'total'"
+        `Failing object validation:\nThe 'total' field is required.\n`
       );
     });
 
@@ -24,7 +24,7 @@ describe("Payments Code Module", () => {
           total: 230,
           expiration: "01/12/2020",
         }),
-        'Failing object validation: .expiration: should match pattern "^(?:(?:31(-)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(-)(?:0?[1,3-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(-)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(-)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$"'
+        `Failing object validation:\nThe 'expiration' field fails to match the required pattern.\n`
       );
     });
   });

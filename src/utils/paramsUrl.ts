@@ -1,10 +1,12 @@
-import validation from "../validation";
+import { ValidationSchema } from "fastest-validator";
+import { Validation } from "../validation";
+const validation = new Validation();
 
 export function objectToUrl(
-  schema: Record<string, unknown>,
+  schema: ValidationSchema,
   object: Record<string, string | number | boolean>
 ): string {
-  const errors = validation.validate(schema, object);
+  const errors = validation.validate(object, schema);
   if (errors.length > 0) {
     throw new Error(validation.message(errors));
   }
