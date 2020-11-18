@@ -3,12 +3,11 @@ import { auditKeyCheck } from "../utils/auditKeyCheck";
 import searchSchema from "../models/loyaltySearchModel";
 import createSchema from "../models/loyaltyCreateModel";
 import chargeSchema from "../models/loyaltyChargeModel";
-import Bluebird = require("bluebird");
 
 export class Loyalty {
   requestManager: Request = new Request();
 
-  create(body: Record<string, unknown>): Bluebird<unknown> {
+  create(body: Record<string, unknown>): Promise<unknown> {
     auditKeyCheck();
     return this.requestManager.create(
       {
@@ -20,7 +19,7 @@ export class Loyalty {
     );
   }
 
-  search(body: Record<string, unknown>): Bluebird<unknown> {
+  search(body: Record<string, unknown>): Promise<unknown> {
     auditKeyCheck();
     return this.requestManager.create(
       {
@@ -32,7 +31,7 @@ export class Loyalty {
     );
   }
 
-  balance(body: Record<string, unknown>): Bluebird<unknown> {
+  balance(body: Record<string, unknown>): Promise<unknown> {
     auditKeyCheck();
     return this.requestManager.create(
       {
@@ -44,7 +43,7 @@ export class Loyalty {
     );
   }
 
-  charge(body: Record<string, unknown>): Bluebird<unknown> {
+  charge(body: Record<string, unknown>): Promise<unknown> {
     auditKeyCheck();
     return this.requestManager.create(
       {

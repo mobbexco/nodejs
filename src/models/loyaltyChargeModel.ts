@@ -1,18 +1,9 @@
-const schema = {
-  required: ["credential", "tax_id", "points", "reference"],
-  properties: {
-    credential: {
-      type: "string",
-    },
-    tax_id: {
-      type: "string",
-    },
-    points: {
-      type: "number",
-    },
-    reference: {
-      type: "string",
-    },
-  },
+import { ValidationSchema } from "fastest-validator";
+
+const schema: ValidationSchema = {
+  credential: "string",
+  tax_id: "string",
+  points: "number",
+  reference: "string",
 };
 export default schema;

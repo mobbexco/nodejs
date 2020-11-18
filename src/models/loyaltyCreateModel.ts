@@ -1,26 +1,12 @@
-const schema = {
-  required: ["identification", "email", "tax_id"],
-  properties: {
-    identification: {
-      type: "string",
-    },
-    email: {
-      type: "string",
-      format: "email",
-    },
-    credential: {
-      type: "string",
-    },
-    tax_id: {
-      type: "string",
-    },
-    name: {
-      type: "string",
-    },
-    phone: {
-      type: "string",
-    },
-  },
+import { ValidationSchema } from "fastest-validator";
+
+const schema: ValidationSchema = {
+  identification: "string",
+  email: "email",
+  credential: "string|optional",
+  tax_id: "string",
+  name: "string|optional",
+  phone: "string|optional",
 };
 
 export default schema;

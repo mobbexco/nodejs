@@ -1,11 +1,10 @@
 import Request from "../requests";
 import schema from "../models/devConnectModel";
-import Bluebird = require("bluebird");
 
 export class DevConnect {
   requestManager: Request = new Request();
 
-  create(body: Record<string, unknown>): Bluebird<unknown> {
+  create(body: Record<string, unknown>): Promise<unknown> {
     return this.requestManager.create(
       {
         path: `/developer/connect`,
@@ -16,7 +15,7 @@ export class DevConnect {
     );
   }
 
-  get(id: string): Bluebird<unknown> {
+  get(id: string): Promise<unknown> {
     return this.requestManager.create({
       path: `/developer/connect/${id}/credentials`,
       method: "GET",

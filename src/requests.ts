@@ -1,8 +1,10 @@
-import * as Promise from "bluebird";
 import configurations from "./configurations";
-import validation from "./validation";
+import { Validation } from "./validation";
 import axios from "axios";
+import { ValidationSchema } from "fastest-validator";
 const JSON_MIME_TYPE = "application/json";
+
+const validation = new Validation();
 
 export default class Request {
   create(
@@ -14,7 +16,7 @@ export default class Request {
         resolve: (thenableOrResult?: unknown) => void,
         reject: (error?: Error) => void
       ) => {
-        const schema = options.schema as Record<string, unknown>;
+        const schema = options.schema as ValidationSchema;
         const url = options.transactions
           ? "https://api.mobbex.com/2.0"
           : "https://api.mobbex.com/p";
@@ -50,7 +52,7 @@ export default class Request {
 
         if (method === "POST") {
           if (schema) {
-            const errors = validation.validate(schema, body);
+            const errors = validation.validate(body, schema);
             if (errors.length > 0) {
               error = new Error(validation.message(errors));
               reject(error);

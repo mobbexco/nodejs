@@ -2,12 +2,11 @@ import Request from "../requests";
 import { objectToUrl } from "../utils/paramsUrl";
 import getSchema from "../models/transactionsSearchGet";
 import postSchema from "../models/transactionsSearchPost";
-import Bluebird = require("bluebird");
 
 export class Transaction {
   requestManager: Request = new Request();
 
-  get(reference: string): Bluebird<unknown> {
+  get(reference: string): Promise<unknown> {
     return this.requestManager.create({
       path: `/transactions/coupons/${reference}`,
       method: "GET",
@@ -18,7 +17,7 @@ export class Transaction {
   search(
     object: Record<string, string | number | boolean>,
     ...args: string[]
-  ): Bluebird<unknown> {
+  ): Promise<unknown> {
     let method;
     if (args.length === 1) {
       method = args[0];
@@ -48,14 +47,14 @@ export class Transaction {
     }
   }
 
-  refund(id: string): Bluebird<unknown> {
+  refund(id: string): Promise<unknown> {
     return this.requestManager.create({
       path: `/operations/${id}/refund`,
       method: "GET",
     });
   }
 
-  partialRefund(id: string, total: number): Bluebird<unknown> {
+  partialRefund(id: string, total: number): Promise<unknown> {
     return this.requestManager.create(
       {
         path: `/operations/${id}/refund`,
@@ -65,7 +64,7 @@ export class Transaction {
     );
   }
 
-  capture(id: string, total: number): Bluebird<unknown> {
+  capture(id: string, total: number): Promise<unknown> {
     return this.requestManager.create(
       {
         path: `/operations/${id}/capture`,
