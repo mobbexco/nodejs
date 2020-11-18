@@ -1,6 +1,6 @@
 {
   "name": "mobbex",
-  "version": "1.11.4",
+  "version": "2.0.0",
   "description": "Mobbex Integration Package",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
