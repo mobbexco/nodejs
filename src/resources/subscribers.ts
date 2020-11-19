@@ -1,10 +1,11 @@
 import Request from "../requests";
 import schema from "../models/subscriberModel";
+import { Subscriber as SubscriberModel } from "../types";
 
 export class Subscriber {
   requestManager: Request = new Request();
 
-  create = (id: string, body: Record<string, unknown>): Promise<unknown> => {
+  create = (id: string, body: SubscriberModel): Promise<unknown> => {
     return this.requestManager.create(
       {
         path: `/subscriptions/${id}/subscriber`,
