@@ -10,16 +10,16 @@ const schema: ValidationSchema = {
     type: "object",
     optional: true,
     props: {
-      day: "integer",
-      month: "integer",
-      year: "integer",
+      day: "number",
+      month: "number",
+      year: "number",
     },
   },
   secondDue: {
     type: "object",
     optional: true,
     props: {
-      days: "integer",
+      days: "number",
       surcharge: "number",
     },
   },
