@@ -10,7 +10,7 @@ import { Sources } from "./resources/sources";
 import { Loyalty } from "./resources/loyalty";
 import { Transaction } from "./resources/transactions";
 
-export default class Mobbex {
+class Mobbex {
   configurations: Configuration = configuration;
   subscribers = new Subscriber();
   subscriptions = new Subscription();
@@ -22,3 +22,5 @@ export default class Mobbex {
   loyalty = new Loyalty();
   transactions = new Transaction();
 }
+
+export default new Mobbex();

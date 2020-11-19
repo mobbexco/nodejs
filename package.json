@@ -2,8 +2,8 @@
   "name": "mobbex",
   "version": "2.1.0",
   "description": "Mobbex Integration Package",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "lib/mobbex.js",
+  "types": "lib/mobbex.d.ts",
   "files": [
     "lib/**/**"
   ],
