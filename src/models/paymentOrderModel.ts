@@ -1,131 +1,102 @@
-const schema = {
-  required: ["total", "description"],
-  properties: {
-    total: {
-      type: "number",
+import { ValidationSchema } from "fastest-validator";
+
+const schema: ValidationSchema = {
+  total: "number",
+  description: "string|max:255|optional",
+  email: "email|optional",
+  phone: "string|optional",
+  reference: "string|optional",
+  due: {
+    type: "object",
+    optional: true,
+    props: {
+      day: "number",
+      month: "number",
+      year: "number",
     },
-    description: {
-      type: "string",
-      maxLength: 255,
+  },
+  secondDue: {
+    type: "object",
+    optional: true,
+    props: {
+      days: "number",
+      surcharge: "number",
     },
-    email: {
-      type: "string",
-    },
-    phone: {
-      type: "string",
-    },
-    reference: {
-      type: "string",
-    },
-    due: {
-      type: "object",
-      properties: {
-        day: {
-          type: "integer",
-        },
-        month: {
-          type: "integer",
-        },
-        year: {
-          type: "integer",
-        },
-      },
-    },
-    secondDue: {
-      type: "object",
-      properties: {
-        days: {
-          type: "integer",
-        },
-        surcharge: {
-          type: "number",
-        },
-      },
-    },
-    actions: {
-      type: "array",
-      items: {
-        type: "object",
-      },
-    },
-    return_url: {
-      type: "string",
-      pattern: "^(http)",
-    },
-    webhook: {
-      type: "string",
-      pattern: "^(http)",
-    },
+  },
+  actions: {
+    type: "array",
+    optional: true,
+    items: "object",
+  },
+  return_url: {
+    type: "string",
+    optional: true,
+    pattern: "^(http)",
+  },
+  webhook: {
+    type: "string",
+    optional: true,
+    pattern: "^(http)",
+  },
+  items: {
+    type: "array",
+    optional: true,
     items: {
-      type: "array",
-      items: {
-        type: "object",
-        properties: {
-          image: {
-            type: "string",
-          },
-          quantity: {
-            type: "number",
-          },
-          description: {
-            type: "string",
-          },
-          total: {
-            type: "number",
-          },
-        },
-      },
-    },
-    options: {
       type: "object",
-      properties: {
-        domain: {
-          type: "string",
-        },
-        theme: {
-          type: "object",
-          properties: {
-            type: {
-              type: "string",
-              enum: ["light", "dark"],
-            },
-            background: {
-              type: "string",
-              pattern: "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
-            },
-            showHeader: {
-              type: "boolean",
-            },
-            header: {
-              type: "object",
-              properties: {
-                name: {
-                  type: "string",
-                },
-                logo: {
-                  type: "string",
-                  pattern: "^(https)",
-                },
+      props: {
+        image: "string|optional",
+        quantity: "number|optional",
+        description: "string|optional",
+        total: "number",
+      },
+    },
+  },
+  options: {
+    type: "object",
+    optional: true,
+    props: {
+      domain: "string|optional",
+      theme: {
+        type: "object",
+        props: {
+          type: {
+            type: "string",
+            optional: true,
+            enum: ["light", "dark"],
+          },
+          background: {
+            type: "string",
+            optional: true,
+            pattern: "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+          },
+          showHeader: "boolean|optional",
+          header: {
+            type: "object",
+            optional: true,
+            props: {
+              name: "string|optional",
+              logo: {
+                type: "string",
+                pattern: "^(https)",
+                optional: true,
               },
             },
-            colors: {
-              type: "object",
-              properties: {
-                primary: {
-                  type: "string",
-                },
-              },
+          },
+          colors: {
+            type: "object",
+            optional: true,
+            props: {
+              primary: "string",
             },
           },
         },
       },
     },
-    sources: {
-      type: "array",
-      items: {
-        type: "string",
-      },
-    },
+  },
+  sources: {
+    type: "array",
+    optional: true,
+    items: "string",
   },
 };
 

@@ -1,10 +1,7 @@
-const schema = {
-  required: ["return_url"],
-  properties: {
-    return_url: {
-      type: "string",
-    },
-  },
+import { ValidationSchema } from "fastest-validator";
+
+const schema: ValidationSchema = {
+  return_url: "string",
 };
 
 export default schema;

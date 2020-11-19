@@ -1,37 +1,23 @@
-const schema = {
-  properties: {
-    page: {
-      type: "number",
-    },
-    limit: {
-      type: "number",
-    },
-    status: {
-      type: "number",
-    },
-    currency: {
-      type: "string",
-      enum: ["ARS", "TEST"],
-    },
-    created_from: {
-      type: "string",
-    },
-    created_to: {
-      type: "string",
-    },
-    text: {
-      type: "string",
-    },
-    reference: {
-      type: "string",
-    },
-    test: {
-      //
-    },
-    context: {
-      type: "string",
-      pattern: "/^\\S+$/g\n",
-    },
+import { ValidationSchema } from "fastest-validator";
+
+const schema: ValidationSchema = {
+  page: "number|optional",
+  limit: "number|optional",
+  status: "number|optional",
+  currency: {
+    type: "string",
+    optional: true,
+    enum: ["ARS", "TEST"],
+  },
+  created_from: "string|optional",
+  created_to: "string|optional",
+  text: "string|optional",
+  reference: "string|optional",
+  test: "string|optional",
+  context: {
+    type: "string",
+    optional: true,
+    pattern: "/^\\S+$/g\n",
   },
 };
 
