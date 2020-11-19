@@ -14,8 +14,8 @@ const schema: ValidationSchema = {
   startDate: {
     type: "object",
     props: {
-      day: "integer",
-      month: "integer",
+      day: "number",
+      month: "number",
     },
   },
 };
