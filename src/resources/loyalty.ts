@@ -3,11 +3,12 @@ import { auditKeyCheck } from "../utils/auditKeyCheck";
 import searchSchema from "../models/loyaltySearchModel";
 import createSchema from "../models/loyaltyCreateModel";
 import chargeSchema from "../models/loyaltyChargeModel";
+import { LoyaltyCharge, LoyaltyCreate, LoyaltySearch } from "../types";
 
 export class Loyalty {
   requestManager: Request = new Request();
 
-  create(body: Record<string, unknown>): Promise<unknown> {
+  create(body: LoyaltyCreate): Promise<unknown> {
     auditKeyCheck();
     return this.requestManager.create(
       {
@@ -19,7 +20,7 @@ export class Loyalty {
     );
   }
 
-  search(body: Record<string, unknown>): Promise<unknown> {
+  search(body: LoyaltySearch): Promise<unknown> {
     auditKeyCheck();
     return this.requestManager.create(
       {
@@ -31,7 +32,7 @@ export class Loyalty {
     );
   }
 
-  balance(body: Record<string, unknown>): Promise<unknown> {
+  balance(body: LoyaltySearch): Promise<unknown> {
     auditKeyCheck();
     return this.requestManager.create(
       {
@@ -43,7 +44,7 @@ export class Loyalty {
     );
   }
 
-  charge(body: Record<string, unknown>): Promise<unknown> {
+  charge(body: LoyaltyCharge): Promise<unknown> {
     auditKeyCheck();
     return this.requestManager.create(
       {

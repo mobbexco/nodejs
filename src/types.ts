@@ -6,24 +6,27 @@ export interface Items {
 }
 
 export interface Customer {
-  email: string;
-  identification: string;
-  name: string;
+  email?: string;
+  identification?: string;
+  name?: string;
   phone?: string;
+  uid?: string;
 }
 
 export interface Options {
-  type?: string;
-  background?: string;
-  showHeader?: boolean;
-  header?: {
-    name?: string;
-    logo?: string;
-  };
-  colors?: {
-    primary: string;
-  };
   domain?: string;
+  theme?: {
+    type?: string;
+    background?: string;
+    showHeader?: boolean;
+    header?: {
+      name?: string;
+      logo?: string;
+    };
+    colors?: {
+      primary: string;
+    };
+  };
 }
 
 export interface Split {
@@ -49,13 +52,10 @@ export interface Checkout {
   intent?: string;
   items?: Items[];
   sources?: string[];
-  customer?: Customer[];
+  customer?: Customer;
   options?: Options;
   split?: Split[];
-}
-
-export interface Wallet extends Checkout {
-  wallet: boolean;
+  wallet?: boolean;
 }
 
 export interface DevConnect {
@@ -81,15 +81,6 @@ export interface LoyaltyCreate {
   tax_id: string;
   name?: string;
   phone?: string;
-}
-
-export interface PaymentCode {
-  reference: string;
-  total: number;
-  expiration: string;
-  email?: string;
-  surchargeDays?: number;
-  surchargeTotal?: number;
 }
 
 export interface PaymentOrder {
@@ -118,7 +109,7 @@ export interface PaymentOrder {
 export interface Subscriber {
   customer: Customer;
   reference: string;
-  startDay: {
+  startDate: {
     day: number;
     month: number;
   };
@@ -131,45 +122,9 @@ export interface Subscription {
   description: string;
   type: string;
   interval: string;
-  trial?: string;
+  trial?: number;
   limit: number;
   webhook: string;
   return_url: string;
-  features?: string;
-}
-
-export interface TransactionGet {
-  page?: number;
-  limit?: number;
-  status?: number;
-  currency?: string;
-  context?: string;
-  created_from?: string;
-  created_to?: string;
-  text?: string;
-  reference?: string;
-  test?: string;
-}
-
-export interface TransactionPost {
-  page?: number;
-  limit?: number;
-  status?: number;
-  currency?: string;
-  context?: string;
-  created?: {
-    from: {
-      day: string;
-      month: string;
-      year: string;
-    };
-    to: {
-      day: string;
-      month: string;
-      year: string;
-    };
-  };
-  text?: string;
-  reference?: string;
-  test?: string;
+  features?: string[];
 }

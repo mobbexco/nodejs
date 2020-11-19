@@ -2,6 +2,16 @@ import configurations from "./configurations";
 import { Validation } from "./validation";
 import axios from "axios";
 import { ValidationSchema } from "fastest-validator";
+import {
+  Checkout,
+  DevConnect,
+  LoyaltyCharge,
+  LoyaltyCreate,
+  LoyaltySearch,
+  PaymentOrder,
+  Subscriber,
+  Subscription,
+} from "./types";
 const JSON_MIME_TYPE = "application/json";
 
 const validation = new Validation();
@@ -9,7 +19,16 @@ const validation = new Validation();
 export default class Request {
   create(
     options: Record<string, unknown>,
-    data?: Record<string, unknown>
+    data?:
+      | Record<string, unknown>
+      | Checkout
+      | DevConnect
+      | LoyaltySearch
+      | LoyaltyCreate
+      | LoyaltyCharge
+      | PaymentOrder
+      | Subscriber
+      | Subscription
   ): Promise<unknown> {
     return new Promise(
       (
@@ -36,7 +55,17 @@ export default class Request {
           }
         }
 
-        const body: Record<string, unknown> | undefined = data && data;
+        const body:
+          | Record<string, unknown>
+          | Checkout
+          | DevConnect
+          | LoyaltyCharge
+          | LoyaltyCreate
+          | LoyaltySearch
+          | PaymentOrder
+          | Subscriber
+          | Subscription
+          | undefined = data && data;
 
         if (method === "GET") {
           axios({

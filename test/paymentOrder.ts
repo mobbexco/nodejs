@@ -23,23 +23,5 @@ describe("Paymen Order Module", () => {
         })
       );
     });
-
-    describe("Error in Model", () => {
-      it("Expect error with model missing total", () => {
-        assert.isRejected(
-          paymentOrder.create({
-            description: "Some Description #3",
-            actions: [
-              {
-                icon: "attachment",
-                title: "Factura",
-                url: "https://speryans.com/mifactura/123",
-              },
-            ],
-            reference: "mi_referencia_123",
-          })
-        );
-      });
-    });
   });
 });

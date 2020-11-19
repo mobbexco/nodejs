@@ -1,10 +1,11 @@
 import schema from "../models/subscriptionModel";
 import Request from "../requests";
+import { Subscription as SubscriptionModel } from "../types";
 
 export class Subscription {
   request: Request = new Request();
 
-  create(body: Record<string, unknown>): Promise<unknown> {
+  create(body: SubscriptionModel): Promise<unknown> {
     return this.request.create(
       {
         path: "/subscriptions",
