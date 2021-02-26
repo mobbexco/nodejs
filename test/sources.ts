@@ -8,11 +8,15 @@ chai.use(chaiAsPromised);
 describe("Sources Module", () => {
   describe("Successfully handle Sources Module", () => {
     it("Should pass with total parameter as integer", () => {
-      assert.ok(sources.list("code", 320));
+      assert.ok(sources.list(320));
     });
 
     it("Should pass with total parameter as float", () => {
-      assert.ok(sources.list("code", 320.5));
+      assert.ok(sources.list(320.5));
+    });
+
+    it("Should get advanced sources", () => {
+      assert.ok(sources.listAdvanced("externalMatch"));
     });
   });
 });

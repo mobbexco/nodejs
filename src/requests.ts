@@ -9,6 +9,7 @@ import {
   LoyaltyCreate,
   LoyaltySearch,
   PaymentOrder,
+  RequestOptions,
   Subscriber,
   Subscription,
 } from "./types";
@@ -18,9 +19,10 @@ const validation = new Validation();
 
 export default class Request {
   create(
-    options: Record<string, unknown>,
+    options: RequestOptions,
     data?:
       | Record<string, unknown>
+      | Record<string, unknown>[]
       | Checkout
       | DevConnect
       | LoyaltySearch
@@ -52,11 +54,13 @@ export default class Request {
           if (!data) {
             error = new Error("Expecting two arguments, one given");
             reject(error);
+            return;
           }
         }
 
         const body:
           | Record<string, unknown>
+          | Record<string, unknown>[]
           | Checkout
           | DevConnect
           | LoyaltyCharge
@@ -67,7 +71,7 @@ export default class Request {
           | Subscription
           | undefined = data && data;
 
-        if (method === "GET") {
+        if (method === "GET" || method === "DELETE") {
           axios({
             method,
             url: url + path,
@@ -76,15 +80,19 @@ export default class Request {
             .then((response) => {
               resolve(response.data);
             })
-            .catch((requestError) => reject(new Error(requestError)));
+            .catch((requestError) => {
+              reject(new Error(requestError));
+              return;
+            });
         }
 
-        if (method === "POST") {
+        if (method === "POST" || method === "PUT") {
           if (schema) {
             const errors = validation.validate(body, schema);
             if (errors.length > 0) {
               error = new Error(validation.message(errors));
               reject(error);
+              return;
             }
           }
           axios({
@@ -96,7 +104,10 @@ export default class Request {
             .then((response) => {
               resolve(response.data);
             })
-            .catch((requestError) => reject(new Error(requestError)));
+            .catch((requestError) => {
+              reject(new Error(requestError));
+              return;
+            });
         }
       }
     );

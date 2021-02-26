@@ -50,6 +50,10 @@ describe("Checkout Module", () => {
         })
       );
     });
+
+    it("Should delete the checkout", () => {
+      assert.isFulfilled(checkout.delete("checkoutID"));
+    });
   });
 
   describe("Error in Model", () => {

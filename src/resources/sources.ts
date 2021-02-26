@@ -3,9 +3,16 @@ import Request from "../requests";
 export class Sources {
   requestManager: Request = new Request();
 
-  list(code: string, total: number): Promise<unknown> {
+  list(total: number): Promise<unknown> {
     return this.requestManager.create({
-      path: `/sources/list/${code}?total=${total}`,
+      path: `/sources?total=${total}`,
+      method: "GET",
+    });
+  }
+
+  listAdvanced(rule: string): Promise<unknown> {
+    return this.requestManager.create({
+      path: `/sources/rules/${rule}/installments`,
       method: "GET",
     });
   }
