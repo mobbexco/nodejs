@@ -77,6 +77,17 @@ mobbex.checkout
   .catch((error) => console.log(error));
 ```
 
+##### Eliminar
+
+Para eliminar un checkout se utiliza `checkout.delete` pasando como argumento su `ID`:
+
+```javascript
+mobbex.checkout
+  .delete("ID")
+  .then((data) => console.log(data))
+  .catch((error) => console.log(error));
+```
+
 ### Split
 
 ##### Checkout con Split
@@ -152,11 +163,22 @@ mobbex.paymentOrder
 
 ##### Listado de Métodos de Pago
 
-Para listar los métodos de pago se utiliza `sources.list` pasando como argumentos el código de acceso y el total:
+Para listar los métodos de pago se utiliza `sources.list` pasando como argumento el total:
 
 ```javascript
 mobbex.sources
-  .list("CODIGO", 200)
+  .list(200)
+  .then((data) => console.log(data))
+  .catch((error) => console.log(error));
+```
+
+##### Obtener planes con reglas avanzadas
+
+Para obtener planes con reglas avanzadas se utiliza `sources.listAdvanced` pasando como argumento la regla:
+
+```javascript
+mobbex.sources
+  .listAdvanced("rule")
   .then((data) => console.log(data))
   .catch((error) => console.log(error));
 ```
@@ -280,6 +302,15 @@ Para obtener todas las subscripciones:
 ```javascript
 mobbex.subscriptions
   .all()
+  .then((data) => console.log(data))
+  .catch((error) => console.log(error));
+```
+
+Es posible filtrar la busqueda por página pasando el número de página como argumento:
+
+```javascript
+mobbex.subscriptions
+  .all(3) // Devuelve la página 3
   .then((data) => console.log(data))
   .catch((error) => console.log(error));
 ```
@@ -421,6 +452,69 @@ Para moverlo a otra subscripción se pasan como argumentos el ID de la subscripc
 mobbex.subscribers
   .move("ID", "SID", {
     sid: "new_subscription_id",
+  })
+  .then((data) => console.log(data))
+  .catch((error) => console.log(error));
+```
+
+#### Ejecuciones
+
+El argumento `EID` corresponde al ID de Ejecución.
+
+##### Reintar ejecución
+
+```javascript
+mobbex.subscribers
+  .retryExecution("ID", "SID", "EID")
+  .then((data) => console.log(data))
+  .catch((error) => console.log(error));
+```
+
+##### Marcar una ejecución como Paga
+
+```javascript
+mobbex.subscribers
+  .setPaidExecution("ID", "SID", "EID")
+  .then((data) => console.log(data))
+  .catch((error) => console.log(error));
+```
+
+##### Ejecutar suscripción manualmente
+
+```javascript
+mobbex.subscribers
+  .manualExecution("ID", "SID")
+  .then((data) => console.log(data))
+  .catch((error) => console.log(error));
+```
+
+###### Ejecutar suscripción manualmente con monto diferido
+
+```javascript
+mobbex.subscribers
+  .manualDiffExecution("ID", "SID", { total: 300 })
+  .then((data) => console.log(data))
+  .catch((error) => console.log(error));
+```
+
+##### Cobros manuales masivamente
+
+```javascript
+mobbex.subscribers
+  .massiveManualExecution("ID", [
+    { sid: "SID", total: 100 },
+    { sid: "SID1", total: 300 },
+  ])
+  .then((data) => console.log(data))
+  .catch((error) => console.log(error));
+```
+
+##### Programar una ejecución a futuro
+
+```javascript
+mobbex.subscribers
+  .scheduledExecution("ID", "SID", {
+    date: { day: 1, month: 2 },
   })
   .then((data) => console.log(data))
   .catch((error) => console.log(error));
