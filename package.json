@@ -1,6 +1,6 @@
 {
   "name": "mobbex",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Mobbex Integration Package",
   "main": "lib/mobbex.js",
   "types": "lib/mobbex.d.ts",
