@@ -26,9 +26,9 @@ export class Subscription {
     );
   }
 
-  all(): Promise<unknown> {
+  all(page?: number): Promise<unknown> {
     return this.request.create({
-      path: "/subscriptions",
+      path: `/subscriptions${page ? `?page=${page}` : ""}`,
       method: "GET",
     });
   }

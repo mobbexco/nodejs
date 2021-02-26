@@ -13,6 +13,8 @@ describe("Subscribers Module", () => {
   });
   const id = "mv4vuUGYG";
   const sid = "Mw57pJPU~";
+  const eid = "54Z45DRXEZ01QWYLUL";
+
   describe("Successfully handle subscribers", () => {
     it("Should create new subscriber", () => {
       assert.isFulfilled(
@@ -61,6 +63,39 @@ describe("Subscribers Module", () => {
 
     it("Should move the user", () => {
       assert.isFulfilled(subscribers.move(id, sid, { sid: "newsubscription" }));
+    });
+
+    it("Should retry the execution", () => {
+      assert.isFulfilled(subscribers.retryExecution(id, sid, eid));
+    });
+
+    it("Should set execution as paid", () => {
+      assert.isFulfilled(subscribers.setPaidExecution(id, sid, eid));
+    });
+
+    it("Should manually execute", () => {
+      assert.isFulfilled(subscribers.manualExecution(id, sid));
+    });
+
+    it("Should manually execute with different price", () => {
+      assert.isFulfilled(
+        subscribers.manualDiffExecution(id, sid, { total: 300 })
+      );
+    });
+
+    it("Should massively execute", () => {
+      assert.isFulfilled(
+        subscribers.massiveManualExecution(id, [
+          { sid: sid, total: 200 },
+          { sid: "testSid", total: 100 },
+        ])
+      );
+    });
+
+    it("Should schedule an execution", () => {
+      assert.isFulfilled(
+        subscribers.scheduledExecution(id, sid, { date: { day: 1, month: 3 } })
+      );
     });
   });
 });

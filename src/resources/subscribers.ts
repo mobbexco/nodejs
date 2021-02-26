@@ -86,6 +86,72 @@ export class Subscriber {
       body
     );
   };
+
+  retryExecution = (id: string, sid: string, eid: string): Promise<unknown> => {
+    return this.requestManager.create({
+      path: `/subscriptions/${id}/subscriber/${sid}/execution/${eid}/action/retry`,
+      method: "GET",
+    });
+  };
+
+  setPaidExecution = (
+    id: string,
+    sid: string,
+    eid: string
+  ): Promise<unknown> => {
+    return this.requestManager.create({
+      path: `/subscriptions/${id}/subscriber/${sid}/execution/${eid}/action/paid`,
+      method: "GET",
+    });
+  };
+
+  manualExecution = (id: string, sid: string): Promise<unknown> => {
+    return this.requestManager.create({
+      path: `/subscriptions/${id}/subscriber/${sid}/execution`,
+      method: "GET",
+    });
+  };
+
+  manualDiffExecution = (
+    id: string,
+    sid: string,
+    body: Record<string, unknown>
+  ): Promise<unknown> => {
+    return this.requestManager.create(
+      {
+        path: `/subscriptions/${id}/subscriber/${sid}/execution`,
+        method: "POST",
+      },
+      body
+    );
+  };
+
+  massiveManualExecution = (
+    id: string,
+    body: Record<string, unknown>[]
+  ): Promise<unknown> => {
+    return this.requestManager.create(
+      {
+        path: `/p/subscriptions/${id}/action/execute`,
+        method: "POST",
+      },
+      body
+    );
+  };
+
+  scheduledExecution = (
+    id: string,
+    sid: string,
+    body: Record<string, unknown>
+  ): Promise<unknown> => {
+    return this.requestManager.create(
+      {
+        path: `/subscriptions/${id}/subscriber/${sid}/action/schedule`,
+        method: "POST",
+      },
+      body
+    );
+  };
 }
 
 export default new Subscriber();

@@ -47,6 +47,13 @@ export class Checkout {
       method: "GET",
     });
   }
+
+  delete(id: string): Promise<unknown> {
+    return this.requestManager.create({
+      path: `/checkout/${id}`,
+      method: "DELETE",
+    });
+  }
 }
 
 export default new Checkout();

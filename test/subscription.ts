@@ -38,6 +38,10 @@ describe("Subscription Module", () => {
       assert.isFulfilled(subscription.all());
     });
 
+    it("Should get the second page of subscriptions", () => {
+      assert.isFulfilled(subscription.all(2));
+    });
+
     it("Should find the subscription", () => {
       assert.isFulfilled(subscription.find(id));
     });
