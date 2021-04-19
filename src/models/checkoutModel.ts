@@ -121,7 +121,8 @@ const schema: ValidationSchema = {
     },
   },
   wallet: {
-    type: "boolean|optional",
+    type: "boolean",
+    optional: true,
   },
 };
 
