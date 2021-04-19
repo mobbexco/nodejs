@@ -59,7 +59,7 @@ const schema: ValidationSchema = {
       email: "email",
       identification: "string",
       name: "string",
-      phone: "string",
+      phone: "string|optional",
     },
   },
   options: {
@@ -119,6 +119,9 @@ const schema: ValidationSchema = {
         reference: "string",
       },
     },
+  },
+  wallet: {
+    type: "boolean|optional",
   },
 };
 

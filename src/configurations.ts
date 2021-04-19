@@ -2,7 +2,6 @@ export class Configuration {
   apiKey?: string;
   accessToken?: string;
   auditKey?: string;
-  privateKey?: string;
 
   configure({
     apiKey,
@@ -22,10 +21,6 @@ export class Configuration {
     this.auditKey = aKey;
   }
 
-  setPrivateKey(privKey: string): void {
-    this.privateKey = privKey;
-  }
-
   getApiKey(): string | undefined {
     return this.apiKey;
   }
@@ -36,10 +31,6 @@ export class Configuration {
 
   getAuditKey(): string | undefined {
     return this.auditKey;
-  }
-
-  getPrivateKey(): string | undefined {
-    return this.privateKey;
   }
 }
 

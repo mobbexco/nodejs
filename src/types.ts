@@ -2,7 +2,6 @@ export interface RequestOptions {
   path: string;
   method: "POST" | "GET" | "PUT" | "DELETE";
   schema?: Record<string, unknown>;
-  private?: boolean;
   transactions?: boolean;
 }
 
