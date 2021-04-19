@@ -3,17 +3,26 @@ import * as chaiAsPromised from "chai-as-promised";
 import { assert } from "chai";
 import { splitCheck } from "../src/utils/splitCheck";
 import checkout from "../src/resources/checkout";
+import configurations from "../src/configurations";
 
 chai.use(chaiAsPromised);
+
+before(() => {
+  configurations.configure({
+    apiKey: "zJ8LFTBX6Ba8D611e9io13fDZAwj0QmKO1Hn1yIj",
+    accessToken: "d31f0721-2f85-44e7-bcc6-15e19d1a53cc",
+  });
+});
 
 describe("Split", () => {
   describe("Split Check Error", () => {
     it("Expect error splits total less than checkout toal", () => {
-      assert.throws(
+      return assert.throws(
         splitCheck.bind(splitCheck, {
           total: 1000,
           currency: "ars",
           reference: "12345",
+          description: "description",
           split: [
             {
               tax_id: "30121231235",
@@ -34,11 +43,12 @@ describe("Split", () => {
     });
 
     it("Expect error splits total greater than checkout toal", () => {
-      assert.throws(
+      return assert.throws(
         splitCheck.bind(splitCheck, {
           total: 1000,
           currency: "ars",
           reference: "12345",
+          description: "description",
           split: [
             {
               tax_id: "30121231235",
@@ -60,12 +70,13 @@ describe("Split", () => {
   });
 
   describe("Split Pass", () => {
-    it("Should Pass the Split Check and Post the Request", () => {
-      assert.isFulfilled(
+    it("Should make request to and pass the Split Check and Post the Request", () => {
+      return assert.isRejected(
         checkout.split({
           total: 1000,
           currency: "ars",
           reference: "12345",
+          description: "description",
           split: [
             {
               tax_id: "30121231235",
@@ -80,12 +91,16 @@ describe("Split", () => {
               fee: 80,
             },
           ],
-        })
+        }),
+        "Request failed with status code 401"
       );
     });
 
-    it("Should correctly release a Split", () => {
-      assert.isFulfilled(checkout.release("123123123"));
+    it("Should correctly make request to release a Split", () => {
+      return assert.isRejected(
+        checkout.release("123123123"),
+        "Request failed with status code 401"
+      );
     });
   });
 });

@@ -5,10 +5,10 @@ import paymentOrder from "../src/resources/paymentOrder";
 
 chai.use(chaiAsPromised);
 
-describe("Paymen Order Module", () => {
+describe("Payment Order Module", () => {
   describe("Successfully handle Payment Order", () => {
-    it("Should create a Payment Order", () => {
-      assert.isFulfilled(
+    it("Should make request to create a Payment Order", () => {
+      return assert.isRejected(
         paymentOrder.create({
           total: 100,
           description: "Some Description #3",
@@ -20,7 +20,8 @@ describe("Paymen Order Module", () => {
             },
           ],
           reference: "mi_referencia_123",
-        })
+        }),
+        "Request failed with status code 401"
       );
     });
   });

@@ -10,7 +10,7 @@ describe("Configurations Module", () => {
       // Configuration is set in subscriber test
       it("Check Api Key and Access Token are set", () => {
         assert.equal(configurations.getApiKey(), apiKey);
-        assert.equal(configurations.getAccessToken(), accessToken);
+        return assert.equal(configurations.getAccessToken(), accessToken);
       });
     });
   });
