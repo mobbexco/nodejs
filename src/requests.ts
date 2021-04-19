@@ -112,7 +112,7 @@ export default class Request {
   }
 
   /* istanbul ignore next */
-  setHeaders(type?: string): Record<string, unknown> {
+  setHeaders(): Record<string, unknown> {
     let headers = {};
     let error: Error;
 

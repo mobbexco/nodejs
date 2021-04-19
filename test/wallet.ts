@@ -2,7 +2,6 @@ import * as chai from "chai";
 import * as chaiAsPromised from "chai-as-promised";
 import { assert } from "chai";
 import checkout from "../src/resources/checkout";
-import configuration from "../src/configurations";
 
 chai.use(chaiAsPromised);
 
