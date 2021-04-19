@@ -44,9 +44,7 @@ export default class Request {
         const path = options.path;
         const method = options.method;
 
-        const headers = options.private
-          ? this.setHeaders("private")
-          : this.setHeaders();
+        const headers = this.setHeaders();
 
         let error: Error;
 
@@ -118,39 +116,25 @@ export default class Request {
     let headers = {};
     let error: Error;
 
-    if (type === "private") {
-      if (!configurations.getPrivateKey()) {
-        error = new Error("Must set Private Key");
-        throw error;
-      } else {
-        headers = {
-          "api-key": configurations.getPrivateKey(),
-          "Content-Type": JSON_MIME_TYPE,
-          Connection: "keep-alive",
-        };
-        return headers;
-      }
+    if (configurations.getAuditKey()) {
+      headers = {
+        "x-audit-key": configurations.getAuditKey(),
+        "Content-Type": JSON_MIME_TYPE,
+      };
+      return headers;
+    } else if (
+      !configurations.getApiKey() ||
+      !configurations.getAccessToken()
+    ) {
+      error = new Error("Must set Api Key and Access Token");
+      throw error;
     } else {
-      if (configurations.getAuditKey()) {
-        headers = {
-          "x-audit-key": configurations.getAuditKey(),
-          "Content-Type": JSON_MIME_TYPE,
-        };
-        return headers;
-      } else if (
-        !configurations.getApiKey() ||
-        !configurations.getAccessToken()
-      ) {
-        error = new Error("Must set Api Key and Access Token");
-        throw error;
-      } else {
-        headers = {
-          "x-api-key": configurations.getApiKey(),
-          "x-access-token": configurations.getAccessToken(),
-          "Content-Type": JSON_MIME_TYPE,
-        };
-        return headers;
-      }
+      headers = {
+        "x-api-key": configurations.getApiKey(),
+        "x-access-token": configurations.getAccessToken(),
+        "Content-Type": JSON_MIME_TYPE,
+      };
+      return headers;
     }
   }
 }
