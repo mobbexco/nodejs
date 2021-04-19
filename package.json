@@ -1,6 +1,6 @@
 {
   "name": "mobbex",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "description": "Mobbex Integration Package",
   "main": "lib/mobbex.js",
   "types": "lib/mobbex.d.ts",
@@ -13,7 +13,6 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint . --ext .ts",
     "prepare": "npm run build",
-    "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint"
   },
   "repository": {
