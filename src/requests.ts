@@ -103,7 +103,7 @@ export default class Request {
               resolve(response.data);
             })
             .catch((requestError) => {
-              reject(new Error(requestError));
+              reject(requestError);
               return;
             });
         }
