@@ -8,11 +8,11 @@ chai.use(chaiAsPromised);
 describe("Transactions Module", () => {
   describe("Successfully handle Tranasactions Module", () => {
     it("Should get all the transactions", () => {
-      assert.ok(transactions.get("mi_referencia_0101e"));
+      return assert.ok(transactions.get("mi_referencia_0101e"));
     });
 
     it("Should search the transaction with POST method", () => {
-      assert.ok(
+      return assert.ok(
         transactions.search({
           page: 1,
           limit: 15,
@@ -22,7 +22,7 @@ describe("Transactions Module", () => {
     });
 
     it("Should search the transaction with POST method and no limit", () => {
-      assert.ok(
+      return assert.ok(
         transactions.search({
           page: 1,
           currency: "ARS",
@@ -31,7 +31,7 @@ describe("Transactions Module", () => {
     });
 
     it("Should search the transaction with POST method, no limit and no page", () => {
-      assert.ok(
+      return assert.ok(
         transactions.search({
           currency: "ARS",
         })
@@ -39,7 +39,7 @@ describe("Transactions Module", () => {
     });
 
     it("Should search the transaction with GET method", () => {
-      assert.ok(
+      return assert.ok(
         transactions.search(
           {
             page: 1,
@@ -52,15 +52,15 @@ describe("Transactions Module", () => {
     });
 
     it("Should refund", () => {
-      assert.ok(transactions.refund("ID"));
+      return assert.ok(transactions.refund("ID"));
     });
 
     it("Should partial refund", () => {
-      assert.ok(transactions.partialRefund("ID", 100));
+      return assert.ok(transactions.partialRefund("ID", 100));
     });
 
     it("Should capture the operation", () => {
-      assert.ok(transactions.capture("Id", 200));
+      return assert.ok(transactions.capture("Id", 200));
     });
   });
 });

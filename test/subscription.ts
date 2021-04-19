@@ -5,11 +5,13 @@ import subscription from "../src/resources/subscription";
 
 chai.use(chaiAsPromised);
 
+const unauthorizedError = "Request failed with status code 401";
+
 describe("Subscription Module", () => {
   const id = "mv4vuUGYG";
   describe("Successfully handle subscrptions", () => {
-    it("Should create a new subscription", () => {
-      assert.isFulfilled(
+    it("Should make request to create a new subscription", () => {
+      return assert.isRejected(
         subscription.create({
           total: 200.0,
           currency: "ARS",
@@ -19,39 +21,41 @@ describe("Subscription Module", () => {
           interval: "1m",
           trial: 1,
           limit: 0,
-          webhook: "http://webhook",
-          return_url: "http://return_url",
+          webhook: "http://webhook.com",
+          return_url: "http://return_url.com",
           features: ["accept_no_funds"],
-        })
+        }),
+        unauthorizedError
       );
     });
 
-    it("Should edit the subscription", () => {
-      assert.isFulfilled(
+    it("Should make request to edit the subscription", () => {
+      return assert.isRejected(
         subscription.edit(id, {
           total: 300.0,
-        })
+        }),
+        unauthorizedError
       );
     });
 
-    it("Should get all the subscriptions", () => {
-      assert.isFulfilled(subscription.all());
+    it("Should make request to get all the subscriptions", () => {
+      return assert.isRejected(subscription.all(), unauthorizedError);
     });
 
-    it("Should get the second page of subscriptions", () => {
-      assert.isFulfilled(subscription.all(2));
+    it("Should make request to get the second page of subscriptions", () => {
+      return assert.isRejected(subscription.all(2), unauthorizedError);
     });
 
-    it("Should find the subscription", () => {
-      assert.isFulfilled(subscription.find(id));
+    it("Should make request to find the subscription", () => {
+      return assert.isRejected(subscription.find(id), unauthorizedError);
     });
 
-    it("Should active the subscription", () => {
-      assert.isFulfilled(subscription.activate(id));
+    it("Should make request to active the subscription", () => {
+      return assert.isRejected(subscription.activate(id), unauthorizedError);
     });
 
-    it("Should delete the subscription", () => {
-      assert.isFulfilled(subscription.delete(id));
+    it("Should make request to delete the subscription", () => {
+      return assert.isRejected(subscription.delete(id), unauthorizedError);
     });
   });
 });

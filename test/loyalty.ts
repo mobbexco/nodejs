@@ -7,51 +7,61 @@ import configuration from "../src/configurations";
 
 chai.use(chaiAsPromised);
 
+before(() => {
+  configuration.configure({
+    apiKey: "zJ8LFTBX6Ba8D611e9io13fDZAwj0QmKO1Hn1yIj",
+    accessToken: "d31f0721-2f85-44e7-bcc6-15e19d1a53cc",
+  });
+});
+
 describe("Loyalty Module", () => {
   describe("Error with Audit Key", () => {
     it("Should expect Error getting Audit Key", () => {
-      assert.throws(auditKeyCheck, "You must set an Audit Key");
+      return assert.throws(auditKeyCheck, "You must set an Audit Key");
     });
   });
 
   describe("Successfully handle Loyalty Module", () => {
-    it("Should get the audit key", () => {
+    it("Should make request to get the audit key", () => {
       configuration.setAuditKey("audit-key");
-      assert.equal(configuration.getAuditKey(), "audit-key");
+      return assert.equal(configuration.getAuditKey(), "audit-key");
     });
 
-    it("Should create a new Loyalty Account", () => {
-      assert.isFulfilled(
+    it("Should make request to create a new Loyalty Account", () => {
+      return assert.isRejected(
         loyalty.create({
           identification: "12123123",
           email: "juanperez@email.com",
           credential: "a1b2c3d4",
           tax_id: "30121231234",
-        })
+        }),
+        "Request failed with status code 401"
       );
     });
 
-    it("Should search a Loyalty Account", () => {
-      assert.isFulfilled(
+    it("Should make request to search a Loyalty Account", () => {
+      return assert.isRejected(
         loyalty.search({
           reference: "12123123",
-        })
+        }),
+        "Request failed with status code 401"
       );
     });
 
-    it("Should charge points", () => {
-      assert.isFulfilled(
+    it("Should make request to charge points", () => {
+      return assert.isRejected(
         loyalty.charge({
           credential: "a1b2c3d4",
           tax_id: "30121231234",
           points: 32,
           reference: "pointscharge1",
-        })
+        }),
+        "Request failed with status code 401"
       );
     });
 
-    it("Should seach the account balance", () => {
-      assert.isFulfilled(
+    it("Should search the account balance", () => {
+      return assert.isFulfilled(
         loyalty.balance({
           credential: "a1b2c3d4",
         })

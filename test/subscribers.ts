@@ -1,23 +1,20 @@
 import * as chai from "chai";
 import * as chaiAsPromised from "chai-as-promised";
 import { assert } from "chai";
-import configuration from "../src/configurations";
 import subscribers from "../src/resources/subscribers";
 
 chai.use(chaiAsPromised);
 
+const unauthorizedError = "Request failed with status code 401";
+
 describe("Subscribers Module", () => {
-  configuration.configure({
-    apiKey: "zJ8LFTBX6Ba8D611e9io13fDZAwj0QmKO1Hn1yIj",
-    accessToken: "d31f0721-2f85-44e7-bcc6-15e19d1a53cc",
-  });
   const id = "mv4vuUGYG";
   const sid = "Mw57pJPU~";
   const eid = "54Z45DRXEZ01QWYLUL";
 
   describe("Successfully handle subscribers", () => {
-    it("Should create new subscriber", () => {
-      assert.isFulfilled(
+    it("Should make request to create new subscriber", () => {
+      return assert.isRejected(
         subscribers.create(id, {
           customer: {
             identification: "32321321",
@@ -33,58 +30,76 @@ describe("Subscribers Module", () => {
       );
     });
 
-    it("Should get all the subscribers", () => {
-      assert.isFulfilled(subscribers.all(id));
+    it("Should make request to get all the subscribers", () => {
+      return assert.isRejected(subscribers.all(id), unauthorizedError);
     });
 
-    it("Should find the user", () => {
-      assert.isFulfilled(subscribers.find(id, sid));
+    it("Should make request to find the user", () => {
+      return assert.isRejected(subscribers.find(id, sid), unauthorizedError);
     });
 
-    it("Should edit the user", () => {
-      assert.isFulfilled(
-        subscribers.edit(id, sid, { reference: "new_reference" })
+    it("Should make request to edit the user", () => {
+      return assert.isRejected(
+        subscribers.edit(id, sid, { reference: "new_reference" }),
+        unauthorizedError
       );
     });
 
-    it("Should suspend the user", () => {
-      assert.isFulfilled(subscribers.suspend(id, sid));
+    it("Should make request to suspend the user", () => {
+      return assert.isRejected(subscribers.suspend(id, sid), unauthorizedError);
     });
 
-    it("Should activate the user", () => {
-      assert.isFulfilled(subscribers.activate(id, sid));
-    });
-
-    it("Should reschedule the user", () => {
-      assert.isFulfilled(
-        subscribers.reschedule(id, sid, { startDate: { day: 10, month: 12 } })
+    it("Should make request to activate the user", () => {
+      return assert.isRejected(
+        subscribers.activate(id, sid),
+        unauthorizedError
       );
     });
 
-    it("Should move the user", () => {
-      assert.isFulfilled(subscribers.move(id, sid, { sid: "newsubscription" }));
-    });
-
-    it("Should retry the execution", () => {
-      assert.isFulfilled(subscribers.retryExecution(id, sid, eid));
-    });
-
-    it("Should set execution as paid", () => {
-      assert.isFulfilled(subscribers.setPaidExecution(id, sid, eid));
-    });
-
-    it("Should manually execute", () => {
-      assert.isFulfilled(subscribers.manualExecution(id, sid));
-    });
-
-    it("Should manually execute with different price", () => {
-      assert.isFulfilled(
-        subscribers.manualDiffExecution(id, sid, { total: 300 })
+    it("Should make request to reschedule the user", () => {
+      return assert.isRejected(
+        subscribers.reschedule(id, sid, { startDate: { day: 10, month: 12 } }),
+        unauthorizedError
       );
     });
 
-    it("Should massively execute", () => {
-      assert.isFulfilled(
+    it("Should make request to move the user", () => {
+      return assert.isRejected(
+        subscribers.move(id, sid, { sid: "newsubscription" }),
+        unauthorizedError
+      );
+    });
+
+    it("Should make request to retry the execution", () => {
+      return assert.isRejected(
+        subscribers.retryExecution(id, sid, eid),
+        unauthorizedError
+      );
+    });
+
+    it("Should make request to set execution as paid", () => {
+      return assert.isRejected(
+        subscribers.setPaidExecution(id, sid, eid),
+        unauthorizedError
+      );
+    });
+
+    it("Should make request to manually execute", () => {
+      return assert.isRejected(
+        subscribers.manualExecution(id, sid),
+        unauthorizedError
+      );
+    });
+
+    it("Should make request to manually execute with different price", () => {
+      return assert.isRejected(
+        subscribers.manualDiffExecution(id, sid, { total: 300 }),
+        unauthorizedError
+      );
+    });
+
+    it("Should make request to massively execute", () => {
+      return assert.isRejected(
         subscribers.massiveManualExecution(id, [
           { sid: sid, total: 200 },
           { sid: "testSid", total: 100 },
@@ -92,9 +107,10 @@ describe("Subscribers Module", () => {
       );
     });
 
-    it("Should schedule an execution", () => {
-      assert.isFulfilled(
-        subscribers.scheduledExecution(id, sid, { date: { day: 1, month: 3 } })
+    it("Should make request to schedule an execution", () => {
+      return assert.isRejected(
+        subscribers.scheduledExecution(id, sid, { date: { day: 1, month: 3 } }),
+        unauthorizedError
       );
     });
   });

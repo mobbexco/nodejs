@@ -11,7 +11,7 @@ describe("Requests Module", () => {
   // Configuration is set in subscribers test
   describe("Requests Error", () => {
     it("Expect arguments error", () => {
-      assert.isRejected(
+      return assert.isRejected(
         requests.create({ path: "/subscriptions", method: "POST" }),
         "Expecting two arguments, one given"
       );
