@@ -23,4 +23,7 @@ class Mobbex {
   transactions = new Transaction();
 }
 
-export default new Mobbex();
+const mobbex = new Mobbex()
+
+export { mobbex }
+export default mobbex
