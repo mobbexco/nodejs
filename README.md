@@ -15,16 +15,33 @@ npm install mobbex --save
 
 ## Uso
 
+Se debe importar la librería utilizando cualquiera de las siguientes opciones:
+
+```javascript
+// 1)
+const { mobbex } = require('mobbex');
+
+// 2)
+import { mobbex } from 'mobbex';
+
+// 3)
+const mobbex = require('mobbex').default;
+
+// 4)
+const mobbex = require('mobbex').mobbex;
+
+// 5)
+const { default: mobbex } = require('mobbex');
+```
+
 ### Configuración
 
 El paquete debe ser configurado utilizando la clave API de la aplicación y el Token de Acceso de la entidad dentro de un objeto:
 
 ```javascript
-const mobbex = require("mobbex");
-
 mobbex.configurations.configure({
-  apiKey: "API-KEY",
-  accessToken: "ACCESS-TOKEN",
+	apiKey: 'API-KEY',
+	accessToken: 'ACCESS-TOKEN'
 });
 ```
 
@@ -32,9 +49,9 @@ En caso de necesitar utilizar el Audit Key, simplemente se agrega al objeto junt
 
 ```javascript
 mobbex.configurations.configure({
-  apiKey: "API-KEY",
-  accessToken: "ACESS-TOKEN",
-  auditKey: "AUDIT-KEY",
+	apiKey: 'API-KEY',
+	accessToken: 'ACESS-TOKEN',
+	auditKey: 'AUDIT-KEY'
 });
 ```
 
@@ -46,35 +63,35 @@ Para crear un checkout se utiliza `checkout.create` pasando como argumento el ob
 
 ```javascript
 const checkout = {
-  total: 100.2,
-  currency: "ARS",
-  reference: "2982-2XtPXlgSaWccqUyobuv4sEmLYMV0N6oX6MoridMw",
-  description: "Descripción de la Venta",
-  items: [
-    {
-      image: "https://www.mobbex.com/wp-content/uploads/2019/03/web_logo.png",
-      quantity: 2,
-      description: "Mi Producto",
-      total: 50,
-    },
-    {
-      image: "https://www.mobbex.com/wp-content/uploads/2019/03/web_logo.png",
-      quantity: 1,
-      description: "Mi otro producto",
-      total: 50.2,
-    },
-  ],
-  options: {
-    domain: "midominio.com",
-  },
-  return_url: "https://mobbex.com/sale/return?session=56789",
-  webhook: "https://mobbex.com/sale/webhook?user=1234",
+	total: 100.2,
+	currency: 'ARS',
+	reference: '2982-2XtPXlgSaWccqUyobuv4sEmLYMV0N6oX6MoridMw',
+	description: 'Descripción de la Venta',
+	items: [
+		{
+			image: 'https://www.mobbex.com/wp-content/uploads/2019/03/web_logo.png',
+			quantity: 2,
+			description: 'Mi Producto',
+			total: 50
+		},
+		{
+			image: 'https://www.mobbex.com/wp-content/uploads/2019/03/web_logo.png',
+			quantity: 1,
+			description: 'Mi otro producto',
+			total: 50.2
+		}
+	],
+	options: {
+		domain: 'midominio.com'
+	},
+	return_url: 'https://mobbex.com/sale/return?session=56789',
+	webhook: 'https://mobbex.com/sale/webhook?user=1234'
 };
 
 mobbex.checkout
-  .create(checkout)
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.create(checkout)
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ##### Eliminar
@@ -83,9 +100,9 @@ Para eliminar un checkout se utiliza `checkout.delete` pasando como argumento su
 
 ```javascript
 mobbex.checkout
-  .delete("ID")
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.delete('ID')
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ### Split
@@ -96,30 +113,30 @@ Para realizar un checkout con modalidad split se utiliza `checkout.split`:
 
 ```javascript
 const split = {
-  total: 1000,
-  currency: "ars",
-  reference: "12345",
-  description: "Descripción de la Venta",
-  split: [
-    {
-      tax_id: "30121231235",
-      total: 900,
-      reference: "pago_1",
-      fee: 100,
-    },
-    {
-      tax_id: "33213213216",
-      total: 100,
-      reference: "pago_2",
-      fee: 80,
-    },
-  ],
+	total: 1000,
+	currency: 'ars',
+	reference: '12345',
+	description: 'Descripción de la Venta',
+	split: [
+		{
+			tax_id: '30121231235',
+			total: 900,
+			reference: 'pago_1',
+			fee: 100
+		},
+		{
+			tax_id: '33213213216',
+			total: 100,
+			reference: 'pago_2',
+			fee: 80
+		}
+	]
 };
 
 mobbex.checkout
-  .split(split)
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.split(split)
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ##### Liberar Fondos
@@ -128,9 +145,9 @@ Para liberar fondos retenidos durante una operación de tipo Split simplemente s
 
 ```javascript
 mobbex.checkout
-  .release("ID")
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.release('ID')
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ### Ordenes de Pago
@@ -141,22 +158,22 @@ Para crear un checkout se utiliza `paymentOrder.create` pasando como argumento e
 
 ```javascript
 paymentOder = {
-  total: 100,
-  description: "Some Description #3",
-  actions: [
-    {
-      icon: "attachment",
-      title: "Factura",
-      url: "https://speryans.com/mifactura/123",
-    },
-  ],
-  reference: "mi_referencia_123",
+	total: 100,
+	description: 'Some Description #3',
+	actions: [
+		{
+			icon: 'attachment',
+			title: 'Factura',
+			url: 'https://speryans.com/mifactura/123'
+		}
+	],
+	reference: 'mi_referencia_123'
 };
 
 mobbex.paymentOrder
-  .create(paymentOrder)
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.create(paymentOrder)
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ### Métodos de Pago y Cuotas
@@ -167,9 +184,9 @@ Para listar los métodos de pago se utiliza `sources.list` pasando como argument
 
 ```javascript
 mobbex.sources
-  .list(200)
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.list(200)
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ##### Obtener planes con reglas avanzadas
@@ -178,9 +195,9 @@ Para obtener planes con reglas avanzadas se utiliza `sources.listAdvanced` pasan
 
 ```javascript
 mobbex.sources
-  .listAdvanced("rule")
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.listAdvanced('rule')
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ### Códigos de Barra o Insertados
@@ -191,13 +208,13 @@ Se utiliza `paymentCode.create` pasando como argumentos el código y un objeto c
 
 ```javascript
 mobbex.paymentCode
-  .create("CODIGO", {
-    reference: "reference",
-    total: 3230,
-    expiration: "01-12-2020",
-  })
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.create('CODIGO', {
+		reference: 'reference',
+		total: 3230,
+		expiration: '01-12-2020'
+	})
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ### Fidelización
@@ -210,9 +227,9 @@ Se utiliza `loyalty.search` pasando como argumento un objeto con la referencia:
 
 ```javascript
 mobbex.loyalty
-  .search({ reference: "mi-referencia" })
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.search({ reference: 'mi-referencia' })
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ##### Creación de Cuenta
@@ -221,13 +238,13 @@ Se utiliza `loyalty.create` pasando como argumento el objeto con los parámetros
 
 ```javascript
 mobbex.loyalty
-  .create({
-    identification: "12312312",
-    email: "demo@mobbex.com",
-    tax_id: "30121231234",
-  })
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.create({
+		identification: '12312312',
+		email: 'demo@mobbex.com',
+		tax_id: '30121231234'
+	})
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ##### Balance de Cuenta
@@ -236,9 +253,9 @@ Se utiliza `loyalty.balance` pasando como argumento un objeto con la credencial:
 
 ```javascript
 mobbex.loyalty
-  .balance({ credential: "123123123" })
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.balance({ credential: '123123123' })
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ##### Carga de puntos
@@ -247,14 +264,14 @@ Se utiliza `loyalty.charge` pasando como argumento el objeto con la información
 
 ```javascript
 mobbex.loyalty
-  .charge({
-    credential: "123123123",
-    tax_id: "30121231234",
-    points: 32,
-    reference: "chargeReference",
-  })
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.charge({
+		credential: '123123123',
+		tax_id: '30121231234',
+		points: 32,
+		reference: 'chargeReference'
+	})
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ### Subscripciones
@@ -265,23 +282,23 @@ Para crear una subscripción se utiliza `subscriptions.create` pasando como argu
 
 ```javascript
 const subscription = {
-  total: 200.0,
-  currency: "ARS",
-  name: "Prueba",
-  description: "Prueba",
-  type: "dynamic",
-  interval: "1m",
-  trial: 1,
-  limit: 0,
-  webhook: "http://webhook",
-  return_url: "http://return_url",
-  features: ["accept_no_funds"],
+	total: 200.0,
+	currency: 'ARS',
+	name: 'Prueba',
+	description: 'Prueba',
+	type: 'dynamic',
+	interval: '1m',
+	trial: 1,
+	limit: 0,
+	webhook: 'http://webhook',
+	return_url: 'http://return_url',
+	features: ['accept_no_funds']
 };
 
 mobbex.subscriptions
-  .create(subscripcion)
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.create(subscripcion)
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ##### Editar
@@ -290,9 +307,9 @@ Para editar una subscripción se pasan como argumentos el ID y un objeto con los
 
 ```javascript
 mobbex.subscriptions
-  .edit("ID", { total: 300.0 })
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.edit('ID', { total: 300.0 })
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ##### Obtener todas
@@ -301,18 +318,18 @@ Para obtener todas las subscripciones:
 
 ```javascript
 mobbex.subscriptions
-  .all()
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.all()
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 Es posible filtrar la busqueda por página pasando el número de página como argumento:
 
 ```javascript
 mobbex.subscriptions
-  .all(3) // Devuelve la página 3
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.all(3) // Devuelve la página 3
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ##### Buscar
@@ -321,9 +338,9 @@ Para buscar una subscripción:
 
 ```javascript
 mobbex.subscriptions
-  .find("ID")
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.find('ID')
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ##### Activar
@@ -332,9 +349,9 @@ Para activar una subscripción:
 
 ```javascript
 mobbex.subscriptions
-  .activate("ID")
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.activate('ID')
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ##### Eliminar
@@ -343,9 +360,9 @@ Para eliminar una subscripción:
 
 ```javascript
 mobbex.subscriptions
-  .delete("ID")
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.delete('ID')
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 #### Suscriptores
@@ -358,33 +375,33 @@ Para crear un nuevo subscriptor se utiliza `subscribers.create` pasando como arg
 
 ```javascript
 const subscriber = {
-  customer: {
-    identification: "32321321",
-    email: "demo@mobbex.com",
-    name: "Demo User",
-  },
-  startDate: {
-    day: 15,
-    month: 5,
-  },
-  reference: "demo_user_321",
+	customer: {
+		identification: '32321321',
+		email: 'demo@mobbex.com',
+		name: 'Demo User'
+	},
+	startDate: {
+		day: 15,
+		month: 5
+	},
+	reference: 'demo_user_321'
 };
 
 mobbex.subscribers
-  .create("ID", subscriber)
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.create('ID', subscriber)
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ##### Obtener todos
 
-Para obtener todos los usuarios de una subscripción se pasa como argumento el ID de la subscripción:
+Para obtener todos los usuarios de una subscripción se pasa como argumento el ID de la subscripción y opcionalmente la página:
 
 ```javascript
 mobbex.subscribers
-  .all("ID")
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.all('ID', 1)
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ##### Buscar
@@ -393,9 +410,9 @@ Para buscar un subscriptor se pasan como argumentos el ID de la subscripción y 
 
 ```javascript
 mobbex.subscribers
-  .find("ID", "SID")
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.find('ID', 'SID')
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ##### Editar
@@ -404,12 +421,12 @@ Para editar un subscriptor se pasan como argumentos el ID de la subscripción y 
 
 ```javascript
 moobex.subscribers
-  .edit("ID", "SID", {
-    total: 300,
-    reference: "new_reference",
-  })
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.edit('ID', 'SID', {
+		total: 300,
+		reference: 'new_reference'
+	})
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ##### Suspender y Activar
@@ -418,14 +435,14 @@ Para suspenderlo y activarlo se pasan como argumentos el ID de la subscripción 
 
 ```javascript
 mobbex.subscribers
-  .suspend("ID", "SID")
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.suspend('ID', 'SID')
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 
 mobbex.subscribers
-  .activate("ID", "SID")
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.activate('ID', 'SID')
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ##### Cambiar Agenda
@@ -434,14 +451,14 @@ Para cambiar su agenda se pasan como argumentos el ID de la subscripción y del 
 
 ```javascript
 mobbex.subscribers
-  .reschedule("ID", "SID", {
-    startDate: {
-      day: 15,
-      month: 5,
-    },
-  })
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.reschedule('ID', 'SID', {
+		startDate: {
+			day: 15,
+			month: 5
+		}
+	})
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ##### Mover a otra subscripción
@@ -450,11 +467,11 @@ Para moverlo a otra subscripción se pasan como argumentos el ID de la subscripc
 
 ```javascript
 mobbex.subscribers
-  .move("ID", "SID", {
-    sid: "new_subscription_id",
-  })
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.move('ID', 'SID', {
+		sid: 'new_subscription_id'
+	})
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 #### Ejecuciones
@@ -465,59 +482,59 @@ El argumento `EID` corresponde al ID de Ejecución.
 
 ```javascript
 mobbex.subscribers
-  .retryExecution("ID", "SID", "EID")
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.retryExecution('ID', 'SID', 'EID')
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ##### Marcar una ejecución como Paga
 
 ```javascript
 mobbex.subscribers
-  .setPaidExecution("ID", "SID", "EID")
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.setPaidExecution('ID', 'SID', 'EID')
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ##### Ejecutar suscripción manualmente
 
 ```javascript
 mobbex.subscribers
-  .manualExecution("ID", "SID")
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.manualExecution('ID', 'SID')
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ###### Ejecutar suscripción manualmente con monto diferido
 
 ```javascript
 mobbex.subscribers
-  .manualDiffExecution("ID", "SID", { total: 300 })
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.manualDiffExecution('ID', 'SID', { total: 300 })
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ##### Cobros manuales masivamente
 
 ```javascript
 mobbex.subscribers
-  .massiveManualExecution("ID", [
-    { sid: "SID", total: 100 },
-    { sid: "SID1", total: 300 },
-  ])
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.massiveManualExecution('ID', [
+		{ sid: 'SID', total: 100 },
+		{ sid: 'SID1', total: 300 }
+	])
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ##### Programar una ejecución a futuro
 
 ```javascript
 mobbex.subscribers
-  .scheduledExecution("ID", "SID", {
-    date: { day: 1, month: 2 },
-  })
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.scheduledExecution('ID', 'SID', {
+		date: { day: 1, month: 2 }
+	})
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ### Dev Connect
@@ -528,11 +545,11 @@ Para crear una solicitud se utiliza `devConnect.create` pasando como argumento e
 
 ```javascript
 mobbex.devConnect
-  .create({
-    return_url: "https://mobbex.com/",
-  })
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.create({
+		return_url: 'https://mobbex.com/'
+	})
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ##### Obtener Credenciales
@@ -541,9 +558,9 @@ Para obtener credenciales se utiliza `devConnect.get` pasando como argumento el 
 
 ```javascript
 mobbex.devConnect
-  .get("ID")
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.get('ID')
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ### Transacciones
@@ -554,9 +571,9 @@ Se utiliza `transactions.get` pasando como argumento la referencia de la factura
 
 ```javascript
 mobbex.transactions
-  .get("REFERENCIA")
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.get('REFERENCIA')
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ##### Listado y Búsqueda de Transacciones
@@ -566,28 +583,28 @@ Se utiliza `transactions.search` pasando como argumento el objeto con los parám
 ```javascript
 // POST REQUEST:
 mobbex.transactions
-  .search({
-    // page y limit van dentro del objeto
-    // a pesar de ser párametros en URL
-    page: 1,
-    limit: 10,
-    currency: "ARS",
-  })
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.search({
+		// page y limit van dentro del objeto
+		// a pesar de ser párametros en URL
+		page: 1,
+		limit: 10,
+		currency: 'ARS'
+	})
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 
 // GET REQUEST:
 mobbex.transactions
-  .search(
-    {
-      page: 1,
-      limit: 10,
-      currency: "ARS",
-    },
-    "get"
-  )
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.search(
+		{
+			page: 1,
+			limit: 10,
+			currency: 'ARS'
+		},
+		'get'
+	)
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ##### Devolución / Anulación
@@ -596,9 +613,9 @@ Se utiliza `transactions.refund` pasando como argumento el ID de la transacción
 
 ```javascript
 mobbex.transactions
-  .refund("ID")
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.refund('ID')
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ##### Devolución Parcial
@@ -607,9 +624,9 @@ Se utiliza `transactions.partialRefund` pasando como argumentos el ID de la tran
 
 ```javascript
 mobbex.transactions
-  .partialRefund("ID", 200)
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.partialRefund('ID', 200)
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
 
 ##### Capturar Operación
@@ -618,7 +635,7 @@ Se utiliza `transactions.capture` pasando como argumentos el ID de la transacci�
 
 ```javascript
 mobbex.transactions
-  .capture("ID", 200)
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+	.capture('ID', 200)
+	.then((data) => console.log(data))
+	.catch((error) => console.log(error));
 ```
