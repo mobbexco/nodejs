@@ -1,6 +1,6 @@
 <p align='center'>
-  <a href='https://strapi.io/#gh-light-mode-only'>
-    <img src='https://framerusercontent.com/images/VdMB4xykL9RjMlCz8ngVkj2kDYM.svg' width='300' alt='Mobbex logo' />
+  <a href='https://mobbex.com'>
+    <img src='./assets/mobbex-logo.png' width='75' alt='Mobbex logo' />
   </a>
 </p>
 
@@ -17,9 +17,6 @@
 <p align='center'>
   <a href='https://www.npmjs.org/package/mobbex'>
     <img src='https://img.shields.io/npm/v/mobbex.svg' alt='NPM Version' />
-  </a>
-  <a href='https://travis-ci.org/github/mobbexco/nodejs'>
-    <img src='https://travis-ci.org/mobbexco/nodejs.svg?branch=master' alt='Build Status' />
   </a>
   <a href='http://npmjs.com/package/mobbex'>
     <img src='https://img.shields.io/npm/dt/mobbex.svg' alt='Downloads' />
