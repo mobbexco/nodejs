@@ -1,6 +1,6 @@
 <p align='center'>
   <a href='https://mobbex.com'>
-    <img src='./assets/mobbex-logo.png' width='75' alt='Mobbex logo' />
+    <img src='https://avatars.githubusercontent.com/u/24828094?v=4&s=100' width='100' alt='Mobbex logo' />
   </a>
 </p>
 
