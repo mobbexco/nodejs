@@ -1,9 +1,34 @@
-# Mobbex
+<p align='center'>
+  <a href='https://mobbex.com'>
+    <img src='https://avatars.githubusercontent.com/u/24828094?v=4&s=100' width='100' alt='Mobbex logo' />
+  </a>
+</p>
 
-[![Version](https://img.shields.io/npm/v/mobbex.svg)](https://www.npmjs.org/package/mobbex)
-[![Build Status](https://travis-ci.org/mobbexco/nodejs.svg?branch=master)](https://travis-ci.org/github/mobbexco/nodejs)
-[![Downloads](https://img.shields.io/npm/dt/mobbex.svg)](http://npmjs.com/package/mobbex)
-[![License](https://img.shields.io/apm/l/vim-mode)](https://github.com/mobbexco/nodejs/blob/master/LICENSE)
+<h3 align='center'>Expertos en cobros</h3>
+
+<p align='center'>
+  Aquí podrás encontrar las instrucciones para que puedas integrar la API de Mobbex en un sitio web y comenzar a recibir pagos.
+</p>
+
+<p align='center'>
+  <a href='https://mobbex.dev'>Ir a la documentación</a>
+</p>
+
+<p align='center'>
+  <a href='https://www.npmjs.org/package/mobbex'>
+    <img src='https://img.shields.io/npm/v/mobbex.svg' alt='NPM Version' />
+  </a>
+  <a href='http://npmjs.com/package/mobbex'>
+    <img src='https://img.shields.io/npm/dt/mobbex.svg' alt='Downloads' />
+  </a>
+  <a href='https://github.com/mobbexco/nodejs/blob/master/LICENSE'>
+    <img src='https://img.shields.io/apm/l/vim-mode' alt='License' />
+  </a>
+</p>
+
+<br />
+
+# Mobbex SDK para Nodejs
 
 ## Instalación
 
@@ -36,7 +61,7 @@ const { default: mobbex } = require('mobbex');
 
 ### Configuración
 
-El paquete debe ser configurado utilizando la clave API de la aplicación y el Token de Acceso de la entidad dentro de un objeto:
+El paquete debe ser configurado utilizando la clave API de la aplicación y el Token de Acceso de la entidad dentro de un objeto, puedes encontrar las credenciales en tu [portal de desarrollador](https://mobbex.com/devportal):
 
 ```javascript
 mobbex.configurations.configure({
